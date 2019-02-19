@@ -22,7 +22,7 @@ public class Country{
 		return numOfTroops;
 	}
 	
-	public char getPossesion(){
+	public int getPossesion(){
 		return possesion;
 	}
 	
