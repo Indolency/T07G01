@@ -54,4 +54,10 @@ public class Continent{
 		}
 		return countryList;
 	}
-}	
+	
+	public ArrayList<Country> getContinentByRef(){
+		return countries;
+	}
+}
+
+
