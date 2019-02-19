@@ -2,7 +2,7 @@ public class Country{
 	
 	private String countryName;
 	private int numOfTroops = 0;
-	private char possesion = 'Z'; //starts from A increases for number of players
+	private char possesion = -1; 
 		
 	/** 
 	constructor that takes in one argument 
@@ -36,7 +36,7 @@ public class Country{
 		numOfTroops = num;
 	}
 		
-	public void setPossesion(char poss){
+	public void setPossesion(int poss){
 		possesion = poss;
 	}
 }
