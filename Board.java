@@ -118,6 +118,48 @@ public class Board{
     }
 
 
+	/**
+	* 
+	* @param selectedCountry is the country the player selects to attack or fortify from 
+	* @return adjacentCountries an arraylist that contains all the adjacent countries
+	*/
+	//""NOTE: It would be great if we found a better way to do this for the actual thing 
+	//other than just hardcoding 42 countries""
+	
+	public ArrayList<Country> getAdjacentCountries(Country selectedCountry){
+		//get the name of the selectedCountry and return the arraylist of countries adjacent to it
+		String cname = selectedCountry.getCountryName();
+		ArrayList<Country> adjacentCountries = new ArrayList<Country>();
+		switch(cname){
+			case "North America":
+				adjacentCountries.add(SA.getContinent().get(0));
+				adjacentCountries.add(EU.getContinent().get(0));
+				adjacentCountries.add(AS.getContinent().get(0));
+			case "South America":
+				adjacentCountries.add(NA.getContinent().get(0));
+				adjacentCountries.add(AF.getContinent().get(0));
+			case "Europe":
+				adjacentCountries.add(NA.getContinent().get(0));
+				adjacentCountries.add(AF.getContinent().get(0));
+				adjacentCountries.add(AS.getContinent().get(0));
+			case "Africa":
+				adjacentCountries.add(SA.getContinent().get(0));
+				adjacentCountries.add(EU.getContinent().get(0));
+				adjacentCountries.add(AS.getContinent().get(0));
+			case "Asia":
+				adjacentCountries.add(AF.getContinent().get(0));
+				adjacentCountries.add(EU.getContinent().get(0));
+				adjacentCountries.add(NA.getContinent().get(0));
+				adjacentCountries.add(AU.getContinent().get(0));
+			case "Australia":
+				adjacentCountries.add(AS.getContinent().get(0));
+				
+		}
+		return adjacentCountries;
+	}
+	
+		
+
 	//Methods that initialize the game
 
 	/**
