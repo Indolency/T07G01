@@ -80,8 +80,7 @@ public class Board{
 			}
 	}
 	
-	public void setNumOfTroopsPerPlayer(){
-	}
+	
 	
 	public int getNumOfCountries(){
 		//Need to get remainder for nondivisible countries with more than 2 players
@@ -96,9 +95,7 @@ public class Board{
 		return numOfCountries;
     }
         
-    public void setupPossession(){
-        
-		
+    public void setupPossession(){	
         for (int i=0; i < numOfPlayers; i++){
 			Random rand = new Random();
             int countryPlayerCounter = 0;
