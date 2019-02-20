@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+imoprt java.util.Scanner;
 
-public class BoardSetup{ //extends Board??
+public class Board{ //extends Board??
 		
     private ArrayList<Continent> continents = new ArrayList<Continent>();
     private int numOfPlayers;
@@ -41,7 +42,7 @@ public class BoardSetup{ //extends Board??
     }
 	
     public void setNumOfPlayers(int num){
-        numOfPlayers = num;
+        numOfPlayers = 2;
     }
 	
     public void setContinents(){
