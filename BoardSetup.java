@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Board{
+public class BoardSetup{ //extends Board??
 		
     private ArrayList<Continent> continents = new ArrayList<Continent>();
     private int numOfPlayers;
@@ -16,7 +16,7 @@ public class Board{
 	private Continent AF = new Continent("Africa");
 	private Continent AU = new Continent("Australia");
     
-    public int getNumOfTroops(int num){//num is num of players, numOfTroops will be changed later with the addition of countries
+    public int getNumOfTroops(int num){//num is num of players
         switch(num){
             case 2:
                 numOfTroops = 9;
@@ -66,8 +66,7 @@ public class Board{
 	public void setupTroops(){
 			int num = getNumOfPlayers();
 			int troops = getNumOfTroops(num);
-			int numCountriesPerPlayer = getNumOfCountries()/getNumOfPlayers();
-			int perPlayer = numCountriesPerPlayer;
+			int perPlayer = getNumOfCountries()/getNumOfPlayers();
 			for (int i=0; i < numOfPlayers; i++){// for each player
 				for (int j=0; j < listOfCountries.size(); j++){//for each country
 					if (listOfCountries.get(j).getPossession() == i){
@@ -80,27 +79,30 @@ public class Board{
 			}
 	}
 	
-	
+	public void setNumOfTroopsPerPlayer(){
+	}
 	
 	public int getNumOfCountries(){
 		//Need to get remainder for nondivisible countries with more than 2 players
-        int numOfCountries = 0;
-        numOfCountries += NA.getContinent().size();
-        numOfCountries += SA.getContinent().size();
-        numOfCountries += EU.getContinent().size();
-        numOfCountries += AS.getContinent().size();
-        numOfCountries += AF.getContinent().size();
-        numOfCountries += AU.getContinent().size();
+		int numOfCountries = 0;
+		numOfCountries += NA.getContinent().size();
+		numOfCountries += SA.getContinent().size();
+		numOfCountries += EU.getContinent().size();
+		numOfCountries += AS.getContinent().size();
+		numOfCountries += AF.getContinent().size();
+		numOfCountries += AU.getContinent().size();
         
 		return numOfCountries;
     }
         
-    public void setupPossession(){	
+    public void setupPossession(){
+        
+		
         for (int i=0; i < numOfPlayers; i++){
 			Random rand = new Random();
             int countryPlayerCounter = 0;
-			int numCountriesPerPlayer = getNumOfCountries()/getNumOfPlayers();
-            while(countryPlayerCounter!= numCountriesPerPlayer){
+			int numOfCountriesPerPlayer = getNumOfCountries()/getNumOfPlayers();
+            while(countryPlayerCounter!= numOfCountriesPerPlayer){
 				int num = rand.nextInt(getNumOfCountries());
                 Country country = listOfCountries.get(num);
                 if (country.getPossession() == -1){
