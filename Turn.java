@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * This Turn class is part of the Risk game that will look at the input from the
@@ -11,64 +11,137 @@ import java.util.Scanner;
  */
 public class Turn {
 
+    // Checks whose turn it is currently
+    private int currentPlayer = getCurrentPlayer();
+    // The number of troops a player has gained from countries they own
+    private int numOfTroopsGained = getNumOfTroopsGained();
+    // Player input of any number
+    private int playerNum;
+    // Player country selection
+    private Country playerCountry = getPlayerCountry();
+    // Total number of troops used to set
+    private int totalTroops;
+    // Decides if player wants to end attack turn or not
+    private boolean playerEnd;
+    // List of countries that the current player possesses
+    private ArrayList<Country> listOfPossessions = new ArrayList<Country>();
+    private ArrayList<Country> listOfAdjacent = new ArrayList<Country>();
+    private Board board;
+
     /**
-     * This method allows the players to choose continents to place their troops
+     * This method allows the players to choose countries to place their troops
      * at the beginning of their turn.
-     * @param numOfTroops
+     * @param numOfTroopsGained
      */
-    public void draft(int numOfTroops) {
-        // while num of troops is not 0
+    public void draft(int numOfTroopsGained) {
+        System.out.println("--DRAFTING PHASE--");
+
+        playerNum = getPlayerNum();
+        // number of inside a country in total
+        while (numOfTroopsGained != 0) {
+            totalTroops = 0;
             // show player the number of troops
-            // show player the continents and troops currently inside (using a key)
-            // ask player how many troops they want to place in that continent
-            // place the number of troops into that continent
+            System.out.println("You currently have" + numOfTroopsGained + "remaining.");
+            // show player the countries and troops currently inside (using a key)
+            System.out.println("counties that player owns");
+            // ask player how many troops they want to place in that country
+            // place the number of troops into that country
+            totalTroops = Country(playerCountry).getNumOfTroops() + playerNum;
+            playerCountry.setNumOfTroops(totalTroops);
             // take off the number of troops they placed
+            numOfTroopsGained -= playerNum;
+        }
     }
 
     /**
-     * The player will choose a continent to attack from, then choose an adjacent
-     * continent to attack. The player will choose how many dice they want to roll
+     * The player will choose a country to attack from, then choose an adjacent
+     * country to attack. The player will choose how many dice they want to roll
      * depending on the number of troops they want to use in the attack. (Up to 3)
      *
      *     If the dice roll is won, the player will get to choose how many troops
-     *     to move into the continent that was just attacked, the minimum being
+     *     to move into the country that was just attacked, the minimum being
      *     the amount of dice they chose to roll.
      *
      *     If the dice roll is lost, the player will lose the amount of troops
      *     from the number of dice.
      *
      * This will be repeated until the player is done, or there are no more
-     * continents they can attack from.
+     * countries they can attack from.
      */
     public void attack() {
+        System.out.println("--ATTACKING PHASE--");
+
+        playerEnd = true;
         // while player does not want to end or until no more to attack from
-        // show player which continents they can attack from
-        // or end attack phase
-        // show continents adjacent to the one chosen number of troops in each
-        // the player will choose how many dice to roll (troops to attack)
-            // the max is 3, must have enough troops matching dice
-        // player will be prompted to roll their dice
+        do {
+            // gets a list of the current countries available to attack
+            listOfAdjacent.clear();
+            ArrayList<Country> currentAdjacent = new ArrayList<Country>();
+            listOfPossessions.add(getPlayerCountries(currentPlayer));
+            // for each country possessed, get adjacent countries, add into list
+            for (Country country : listOfPossessions) {
+                currentAdjacent.add(getAdjacentCountries(country));
+                for (Country adjacent : currentAdjacent) {
+                    // make sure no duplicates
+                    if (!listOfAdjacent.contains(adjacent))
+                    listOfAdjacent.add(adjacent);
+                }
+            }
 
-        // opponent will also roll dice depending on their troops (up to 2)
+            int numCountriesAvailable = listOfAdjacent.size();
+            totalTroops = 0;
+            // show countries to attack and number of troops in each
+            for (Country country : listOfAdjacent) {
+                System.out.println(country.getCountryName() + ": " + country.getNumOfTroops());
+            }
+            // or end attack phase
 
-        // the highest dice rolls will be compared
+            // player will be prompted to roll a die
+            // opponent will also roll a die
+            // current player's dice
+            int dice1;
+            // opponent's dice
+            int dice2;
+            // the highest dice rolls will be compared
+            // if the highest dice rolls are from player
+            if (dice1 > dice2) {
+                // player will choose the amount of armies -1
+                totalTroops += playerCountry.getNumOfTroops();
+                if (totalTroops == 1) {
+                    playerNum = getPlayerNum();
+                    totalTroops += playerNum;
+                    playerCountry.setNumOfTroops(totalTroops);
+                    playerCountry.setPossession(currentPlayer);
+                } else {
+                    totalTroops--;
+                    playerCountry.setNumOfTroops(totalTroops);
+                }
+            //the highest dice rolls are from opponent
+            } else if (dice1 < dice2){
+                // player will lose 1 troop
+                // find which country that the attack was from
+            playerEnd = getPlayerEnd();
+            }
 
-        // if the highest dice rolls are from player
-            // player will choose the amount of armies -1 and min from dice
-
-        // else the highest dice rolls are from opponent
-            // player will lose the amount of armies from the dice lost
-
+        } while (playerEnd && numCountriesAvailable != 0);
     }
 
     /**
-     * The player will choose a continent to move troops from, into an adjacent
-     * continent of their choice. Then the turn will end.
+     * The player will choose a country to move troops from, into an adjacent
+     * country of their choice. Then the turn will end.
      */
     public void fortify() {
-        // show continents the player has owned, player will choose
-        // show continents adjacent to one picked
-        // choose amount of troops to move into new continent
+        System.out.println("--FORTIFY PHASE--");
+
+        totalTroops = 0;
+        playerNum = getPlayerNum();
+        // show countries the player has owned
+        System.out.println("countries that player owns");
+        // player will choose a country
+        // show countries adjacent to one picked
+        board.getAdjacentCountries(playerCountry);
+        // choose amount of troops to move into new country
+        totalTroops = Country(playerCountry).getNumOfTroops + playerNum;
         // end
 
     }
