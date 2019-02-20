@@ -158,6 +158,24 @@ public class Board{
 		return adjacentCountries;
 	}
 	
+	
+	/**
+	* 
+	* @param playerNumber is player's number (starts from 0)
+	* @return possessedCountries is an arraylist that contains all the countries owned by the player
+	*/
+	
+	public ArrayList<Country> getPlayerCountries(int playerNumber){
+		ArrayList<Country> possessedCountries = new ArrayList<Country>();
+		for (int i=0; i <listOfCountries.size(); i++){
+			if (listOfCountries.get(i).getPossession() == playerNumber){
+				possessedCountries.add(listOfCountries.get(i));
+			}
+		}
+		return possessedCountries;
+	}
+				
+		
 		
 
 	//Methods that initialize the game
