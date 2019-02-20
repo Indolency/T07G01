@@ -16,7 +16,7 @@ public class Board{
 	private Continent AF = new Continent("Africa");
 	private Continent AU = new Continent("Australia");
     
-    public int getNumOfTroops(int num){//num is num of players
+    public int getNumOfTroops(int num){//num is num of players, numOfTroops will be changed later with the addition of countries
         switch(num){
             case 2:
                 numOfTroops = 9;
