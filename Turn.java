@@ -140,8 +140,10 @@ public class Turn {
         // player will choose a country
         // show countries adjacent to one picked
         board.getAdjacentCountries(playerCountry);
-        // choose amount of troops to move into new country
-        totalTroops = Country(playerCountry).getNumOfTroops + playerNum;
+        // make sure country is one that they own
+        if (playerCountry.getPossession() == currentPlayer)
+            // choose amount of troops to move into new country
+            totalTroops = playerCountry.getNumOfTroops() + playerNum;
         // end
 
     }
