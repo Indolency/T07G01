@@ -5,9 +5,9 @@ imoprt java.util.Scanner;
 public class Board{ //extends Board??
 		
     private ArrayList<Continent> continents = new ArrayList<Continent>();
-    private int numOfPlayers;
+    private int numOfPlayers = 0;
     private ArrayList<Country> listOfCountries = new ArrayList<Country>();
-    private int numOfTroops;
+    private int numOfTroops = 0;
 	
 	
 	private Continent NA = new Continent("North America");
