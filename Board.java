@@ -1,22 +1,22 @@
 import java.util.ArrayList;
 import java.util.Random;
-imoprt java.util.Scanner;
+import java.util.Scanner;
 
 public class Board{ //extends Board??
-		
+
     private ArrayList<Continent> continents = new ArrayList<Continent>();
     private int numOfPlayers = 0;
     private ArrayList<Country> listOfCountries = new ArrayList<Country>();
     private int numOfTroops = 0;
-	
-	
+
+
 	private Continent NA = new Continent("North America");
 	private Continent SA = new Continent("South America");
 	private Continent EU = new Continent("Europe");
 	private Continent AS = new Continent("Asia");
 	private Continent AF = new Continent("Africa");
 	private Continent AU = new Continent("Australia");
-    
+
     public int getNumOfTroops(int num){//num is num of players
         switch(num){
             case 2:
@@ -36,15 +36,15 @@ public class Board{ //extends Board??
         }
         return numOfTroops;
     }
-	
+
     public int getNumOfPlayers(){
         return numOfPlayers;
     }
-	
+
     public void setNumOfPlayers(int num){
         numOfPlayers = 2;
     }
-	
+
     public void setContinents(){
         continents.add(NA);
         continents.add(SA);
@@ -52,9 +52,9 @@ public class Board{ //extends Board??
         continents.add(AS);
         continents.add(AF);
         continents.add(AU);
-        
+
     }
-        
+
     public void makeListOfCountries(){
 		 listOfCountries.addAll(NA.getContinentByRef());
 		 listOfCountries.addAll(SA.getContinentByRef());
@@ -63,7 +63,7 @@ public class Board{ //extends Board??
 		 listOfCountries.addAll(AF.getContinentByRef());
 		 listOfCountries.addAll(AU.getContinentByRef());
     }
-    
+
 	public void setupTroops(){
 			int num = getNumOfPlayers();
 			int troops = getNumOfTroops(num);
@@ -79,10 +79,10 @@ public class Board{ //extends Board??
 				}
 			}
 	}
-	
+
 	public void setNumOfTroopsPerPlayer(){
 	}
-	
+
 	public int getNumOfCountries(){
 		//Need to get remainder for nondivisible countries with more than 2 players
 		int numOfCountries = 0;
@@ -92,13 +92,13 @@ public class Board{ //extends Board??
 		numOfCountries += AS.getContinent().size();
 		numOfCountries += AF.getContinent().size();
 		numOfCountries += AU.getContinent().size();
-        
+
 		return numOfCountries;
     }
-        
+
     public void setupPossession(){
-        
-		
+
+
         for (int i=0; i < numOfPlayers; i++){
 			Random rand = new Random();
             int countryPlayerCounter = 0;
@@ -113,6 +113,6 @@ public class Board{ //extends Board??
             }
         }
     }
-   
-    
+
+
 }
