@@ -2,7 +2,7 @@ public class Country{
 	
 	private String countryName;
 	private int numOfTroops = 0;
-	private int possesion = -1;
+	private int possession = -1;
 		
 	/** 
 	constructor that takes in one argument 
@@ -15,7 +15,7 @@ public class Country{
 	public Country(Country c){
 		countryName = getCountryName();
 		numOfTroops = getNumOfTroops();
-		possesion = getPossesion();
+		possession = getPossession();
 	}
 	
 	
@@ -29,8 +29,8 @@ public class Country{
 		return numOfTroops;
 	}
 	
-	public int getPossesion(){
-		return possesion;
+	public int getPossession(){
+		return possession;
 	}
 	
 	// setter methods
@@ -39,11 +39,11 @@ public class Country{
 		countryName = cname;
 	}
 		
-	public void setnumOfTroops(int num){
+	public void setNumOfTroops(int num){
 		numOfTroops = num;
 	}
 		
-	public void setPossesion(int poss){
-		possesion = poss;
+	public void setPossession(int poss){
+		possession = poss;
 	}
 }
