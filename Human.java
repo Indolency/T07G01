@@ -17,8 +17,9 @@ public class Human{
     for (int i=0; i<listOfPlayerCountries; i++){
       String countryName = listOfPlayerCountries.get(i).getCountryName();
       int numOfTroops =  listOfPlayerCountries.get(i).getNumOfTroops();
-      System.out.println(countryName+" "+numOfTroops);
+      System.out.println("In " + countryName+ " you have " +numOfTroops + " troops.");
     }
   }
+  
   
 }
