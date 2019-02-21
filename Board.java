@@ -7,8 +7,8 @@ import java.util.Scanner;
  * throughout the game. ""NOTE: at this point Board only initializes the board""
  *
  * @author Israa Farouk, Jana Osea, Nicole Langevin
- * @version 1.0
- * @since 2019-02-19
+ * @version 2.0
+ * @since 2019-02-21
  */
 
 public class Board{ 
@@ -21,6 +21,7 @@ public class Board{
     private int numOfPlayers = 0;
     private ArrayList<Country> listOfCountries = new ArrayList<Country>();
     private int numOfTroopsPP = 0;
+    private int numOfTroopsToDraft = 0;
     
     //creation of all the continents using Continent class
     private Continent NA = new Continent("NORTH AMERICA");
@@ -89,7 +90,7 @@ public class Board{
 	*/
 	//""NOTE: This needs to be updated when numOfPlayers isn't just 2 - follow rules of game""
 	
-	public int getNumOfTroopsPP(){
+	public int setupNumOfTroopsPP(){
         switch(numOfPlayers){
             case 2:
                 numOfTroopsPP = 9;
@@ -210,7 +211,7 @@ public class Board{
 	*/
 
 	public void setupTroops(){
-			int troops = getNumOfTroopsPP();
+			int troops = setupNumOfTroopsPP();
 			int numOfCountriesPerPlayer = getNumOfCountries()/numOfPlayers;
 			for (int i=0; i < numOfPlayers; i++){// for each player
 				for (int j=0; j < listOfCountries.size(); j++){//for each country
@@ -225,6 +226,8 @@ public class Board{
 				}
 			}
 	}
+	
+	
 
 
 }
