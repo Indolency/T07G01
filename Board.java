@@ -21,7 +21,6 @@ public class Board{
     private int numOfPlayers = 0;
     private ArrayList<Country> listOfCountries = new ArrayList<Country>();
     private int numOfTroopsPP = 0;
-    private int numOfTroopsToDraft = 0;
     
     //creation of all the continents using Continent class
     private Continent NA = new Continent("NORTH AMERICA");
