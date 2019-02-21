@@ -26,34 +26,34 @@ public class Continent{
 		
 		switch (continentName){
 			
-			case "North America":
+			case "NORTH AMERICA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
-					countries.add(new Country("North America"));
+					countries.add(new Country("NORTH AMERICA"));
 				}
 			
-			case "South America":
+			case "SOUTH AMERICA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
-					countries.add(new Country("South America"));
+					countries.add(new Country("SOUTH AMERICA"));
 				}
 			
-			case "Europe":
+			case "EUROPE":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
-					countries.add(new Country("Europe"));
+					countries.add(new Country("EUROPE"));
 				}
 			
-			case "Asia":
+			case "ASIA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
-					countries.add(new Country("Asia"));
+					countries.add(new Country("ASIA"));
 				}
 			
-			case "Africa":
+			case "AFRICA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
-					countries.add(new Country("Africa"));
+					countries.add(new Country("AFRICA"));
 				}
 				
-			case "Australia":
+			case "AUSTRALIA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
-					countries.add(new Country("Australia"));
+					countries.add(new Country("AUSTRALIA"));
 				}
 			}
 	} 
