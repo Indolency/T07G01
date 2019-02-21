@@ -23,12 +23,12 @@ public class Board{
     private int numOfTroopsPP = 0;
     
     //creation of all the continents using Continent class
-    private Continent NA = new Continent("North America");
-    private Continent SA = new Continent("South America");
-    private Continent EU = new Continent("Europe");
-    private Continent AS = new Continent("Asia");
-    private Continent AF = new Continent("Africa");
-    private Continent AU = new Continent("Australia");
+    private Continent NA = new Continent("NORTH AMERICA");
+    private Continent SA = new Continent("SOUTH AMERICA");
+    private Continent EU = new Continent("EUROPE");
+    private Continent AS = new Continent("ASIA");
+    private Continent AF = new Continent("AFRICA");
+    private Continent AU = new Continent("AUSTRALIA");
 	
 
 	//Setters
@@ -131,27 +131,27 @@ public class Board{
 		String cname = selectedCountry.getCountryName();
 		ArrayList<Country> adjacentCountries = new ArrayList<Country>();
 		switch(cname){
-			case "North America":
+			case "NORTH AMERICA":
 				adjacentCountries.add(SA.getContinent().get(0));
 				adjacentCountries.add(EU.getContinent().get(0));
 				adjacentCountries.add(AS.getContinent().get(0));
-			case "South America":
+			case "SOUTH AMERICA":
 				adjacentCountries.add(NA.getContinent().get(0));
 				adjacentCountries.add(AF.getContinent().get(0));
-			case "Europe":
+			case "EUROPE":
 				adjacentCountries.add(NA.getContinent().get(0));
 				adjacentCountries.add(AF.getContinent().get(0));
 				adjacentCountries.add(AS.getContinent().get(0));
-			case "Africa":
+			case "AFRICA":
 				adjacentCountries.add(SA.getContinent().get(0));
 				adjacentCountries.add(EU.getContinent().get(0));
 				adjacentCountries.add(AS.getContinent().get(0));
-			case "Asia":
+			case "ASIA":
 				adjacentCountries.add(AF.getContinent().get(0));
 				adjacentCountries.add(EU.getContinent().get(0));
 				adjacentCountries.add(NA.getContinent().get(0));
 				adjacentCountries.add(AU.getContinent().get(0));
-			case "Australia":
+			case "AUSTRALIA":
 				adjacentCountries.add(AS.getContinent().get(0));
 				
 		}
