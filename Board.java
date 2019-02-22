@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * This Board class is part of the Risk game that will initialize the board and update it 
@@ -11,29 +10,42 @@ import java.util.Scanner;
  * @since 2019-02-21
  */
 
-public class Board{ 
-
-	/**
-	* Here, @numOfTroopsPP is number of troops per player
-	*/
+public class Board{
 	
-    private ArrayList<Continent> continents = new ArrayList<Continent>();
+	/**
+	 * Here, @numOfTroopsPP is number of troops per player
+	 */
+
     private int numOfPlayers = 0;
+    private int numOfTroopsPP = 0; //initial value
+    private ArrayList<Continent> continents = new ArrayList<Continent>();
     private ArrayList<Country> listOfCountries = new ArrayList<Country>();
-    private int numOfTroopsPP = 0;
-    
+
     //creation of all the continents using Continent class
-    private Continent NA = new Continent("NORTH AMERICA");
+	private Continent NA = new Continent("NORTH AMERICA");
     private Continent SA = new Continent("SOUTH AMERICA");
     private Continent EU = new Continent("EUROPE");
     private Continent AS = new Continent("ASIA");
     private Continent AF = new Continent("AFRICA");
     private Continent AU = new Continent("AUSTRALIA");
+
+    public Board(int numOfPlayers){
+      setNumOfPlayers(numOfPlayers);
+    }
 	
-
 	//Setters
-	//This method adds all the continents to the arraylist continents
+	
+	/**
+	 * This method sets the number of players playing the game
+	 * @param num is the number of players 
+	 */
 
+    public void setNumOfPlayers(int numOfPlayers){
+      this.numOfPlayers = numOfPlayers;
+    }
+	
+	//The method setContinents adds all the continents to the arraylist continents
+	
 	public void setContinents(){
         continents.add(NA);
         continents.add(SA);
@@ -41,37 +53,31 @@ public class Board{
         continents.add(AS);
         continents.add(AF);
         continents.add(AU);
-
-    }
-
-	/**
-	* This method sets the number of players playing the game
-	* @param num is the number of players 
-	*/
-	//""NOTE: Later, this method will actually set the number 
-	//based on a prompt from another method in another file""
-
-    public void setNumOfPlayers(int num){
-        numOfPlayers = 2;
+		System.out.println(continents.get(0).getContinent().get(0).getCountryName());
     }
 	
-	// This method adds all the countries in each continent to the arraylist listOfCountries
+	// The method setListOfCountries adds all the countries in each continent to the arraylist listOfCountries
 	//""NOTE: At the moment, each continent has only one country with the same name as the continent
-		
-    public void setListOfCountries(){
+	
+	public void setListOfCountries(){
 		 listOfCountries.addAll(NA.getContinentByRef());
 		 listOfCountries.addAll(SA.getContinentByRef());
 		 listOfCountries.addAll(EU.getContinentByRef());
 		 listOfCountries.addAll(AS.getContinentByRef());
 		 listOfCountries.addAll(AF.getContinentByRef());
 		 listOfCountries.addAll(AU.getContinentByRef());
+			
     }
-
+	
 	//Getters
+	
+	/**The method getNumOfCountries counts the number of countries in each arraylist of continents
+	 * and adds them together to get a total number of countries on the game board
+	 */
 	//""NOTE: We should get rid of this method once we finalize the number of countries we will use
 	// i.e. we can just set numOfCountries as a constant""
-
-    public int getNumOfCountries(){
+	
+	public int getNumOfCountries(){
 		int numOfCountries = 0;
 		numOfCountries += NA.getContinent().size();
 		numOfCountries += SA.getContinent().size();
@@ -81,42 +87,7 @@ public class Board{
 		numOfCountries += AU.getContinent().size();
 
 		return numOfCountries;
-    }
-	
-	/** 
-	* @return numOfTroopsPP gives each player a number of troops to start with
-	* based on the number of players 
-	*/
-	//""NOTE: This needs to be updated when numOfPlayers isn't just 2 - follow rules of game""
-	
-	public int setupNumOfTroopsPP(){
-        switch(numOfPlayers){
-            case 2:
-                numOfTroopsPP = 9;
-            case 3:
-                numOfTroopsPP = 9;
-            case 4:
-                numOfTroopsPP = 9;
-            case 5:
-                numOfTroopsPP = 9;
-            case 6:
-                numOfTroopsPP = 9;
-            case 7:
-                numOfTroopsPP = 9;
-            case 8:
-                numOfTroopsPP = 9;
-        }
-        return numOfTroopsPP;
-    }
-	
-	/**
-	* @return numOfPlayers returns the number of players
-	*/
-
-    public int getNumOfPlayers(){
-        return numOfPlayers;
-    }
-
+	}
 
 	/**
 	* 
@@ -158,9 +129,7 @@ public class Board{
 		return adjacentCountries;
 	}
 	
-	
 	/**
-	* 
 	* @param playerNumber is player's number (starts from 0)
 	* @return possessedCountries is an arraylist that contains all the countries owned by the player
 	*/
@@ -172,23 +141,48 @@ public class Board{
 				possessedCountries.add(listOfCountries.get(i));
 			}
 		}
+		for (int i=0;i<possessedCountries.size(); i++){
+			System.out.println(possessedCountries.get(i).getCountryName());
+		}
 		return possessedCountries;
 	}
-				
-		
-		
-
+	
 	//Methods that initialize the game
-
+	
+	/** 
+	* @return numOfTroopsPP gives each player a number of troops to start with
+	* based on the number of players 
+	*/
+	//""NOTE: This needs to be updated when numOfPlayers isn't just 2 - follow rules of game""
+		
+	public int setupNumOfTroopsPP(){
+	    int num = numOfPlayers;
+        switch(num){
+            case 2:
+                numOfTroopsPP = 9;
+            case 3:
+                numOfTroopsPP = 9;
+            case 4:
+                numOfTroopsPP = 9;
+            case 5:
+                numOfTroopsPP = 9;
+            case 6:
+                numOfTroopsPP = 9;
+            case 7:
+                numOfTroopsPP = 9;
+            case 8:
+                numOfTroopsPP = 9;
+        }
+        return numOfTroopsPP;
+    }
+	
 	/**
-	* This method assigns each player's possession (based off the numOfCountriesPerPlayer)
-	* to each country 
-	*/	
-
-    public void setupPossession(){
+	* The method setupPossession distributes the number of troops per player among their respective countries
+	*/
+	
+	public void setupPossession(){
 		//""NOTE: Need to get remainder for nondivisible countries with more than 2 players""
-
-
+		
         for (int i=0; i < numOfPlayers; i++){ //for each player
 			Random rand = new Random();
             int countryPlayerCounter = 0;
@@ -204,11 +198,9 @@ public class Board{
             }
         }
     }
-
-	/**
-	* This method distributes the number of troops per player among their respective countries
-	*/
-
+	
+	
+	
 	public void setupTroops(){
 			int troops = setupNumOfTroopsPP();
 			int numOfCountriesPerPlayer = getNumOfCountries()/numOfPlayers;
@@ -226,7 +218,31 @@ public class Board{
 			}
 	}
 	
+	public void boardStatus(){
+		for (int i=0; i<continents.size(); i++){ //for each continent
+			System.out.println("Print please");
+			ArrayList<Country> a = continents.get(i).getContinent();
+			//System.out.println(a.get(0).getCountryName());
+			for (int j=0; j<a.size(); j++){ //for each country
+				String countryName = a.get(j).getCountryName();
+				int numOfTroops = a.get(j).getNumOfTroops();
+				int playerNumber = a.get(j).getPossession();
+				System.out.println(countryName + " is owned by player " + playerNumber + " and has " + numOfTroops + " troops.");
+			}
+		}
+	}
 	
-
-
+	/**The method boardSetup initializes the continents and countries on the board
+	 * and initializes the troops and players belonging to said countries
+	 */
+	
+	public void boardSetup(){
+		setContinents();
+		setListOfCountries();
+		setupPossession();
+		setupTroops();
+	}
+	
+	
+	
 }
