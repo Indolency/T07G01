@@ -84,4 +84,13 @@ public class Country{
 	public void setPossession(int poss){
 		possession = poss;
 	}
+	
+	/**
+	 * @param troops is the number of troops the player is adding to one of their countries
+	 * during the draft part of their turn
+	 */
+	
+	public void addTroops(int troops){
+		numOfTroops += troops;
+	}
 }
