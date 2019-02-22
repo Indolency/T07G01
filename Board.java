@@ -1,39 +1,51 @@
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * This Board class is part of the Risk game that will initialize the board and update it 
  * throughout the game. ""NOTE: at this point Board only initializes the board""
  *
  * @author Israa Farouk, Jana Osea, Nicole Langevin
- * @version 1.0
- * @since 2019-02-19
+ * @version 2.0
+ * @since 2019-02-21
  */
 
-public class Board{ 
-
+public class Board{
+	
 	/**
-	* Here, @numOfTroopsPP is number of troops per player
-	*/
-	
-    private ArrayList<Continent> continents = new ArrayList<Continent>();
+	 * Here, @numOfTroopsPP is number of troops per player
+	 */
+
     private int numOfPlayers = 0;
+    private int numOfTroopsPP = 0; //initial value
+    private ArrayList<Continent> continents = new ArrayList<Continent>();
     private ArrayList<Country> listOfCountries = new ArrayList<Country>();
-    private int numOfTroopsPP = 0;
-    
+
     //creation of all the continents using Continent class
-    private Continent NA = new Continent("North America");
-    private Continent SA = new Continent("South America");
-    private Continent EU = new Continent("Europe");
-    private Continent AS = new Continent("Asia");
-    private Continent AF = new Continent("Africa");
-    private Continent AU = new Continent("Australia");
+	private Continent NA = new Continent("NORTH AMERICA");
+    private Continent SA = new Continent("SOUTH AMERICA");
+    private Continent EU = new Continent("EUROPE");
+    private Continent AS = new Continent("ASIA");
+    private Continent AF = new Continent("AFRICA");
+    private Continent AU = new Continent("AUSTRALIA");
+
+    public Board(int numOfPlayers){
+      setNumOfPlayers(numOfPlayers);
+    }
 	
-
 	//Setters
-	//This method adds all the continents to the arraylist continents
+	
+	/**
+	 * This method sets the number of players playing the game
+	 * @param num is the number of players 
+	 */
 
+    public void setNumOfPlayers(int numOfPlayers){
+      this.numOfPlayers = numOfPlayers;
+    }
+	
+	//The method setContinents adds all the continents to the arraylist continents
+	
 	public void setContinents(){
         continents.add(NA);
         continents.add(SA);
@@ -41,37 +53,31 @@ public class Board{
         continents.add(AS);
         continents.add(AF);
         continents.add(AU);
-
-    }
-
-	/**
-	* This method sets the number of players playing the game
-	* @param num is the number of players 
-	*/
-	//""NOTE: Later, this method will actually set the number 
-	//based on a prompt from another method in another file""
-
-    public void setNumOfPlayers(int num){
-        numOfPlayers = 2;
+		System.out.println(continents.get(0).getContinent().get(0).getCountryName());
     }
 	
-	// This method adds all the countries in each continent to the arraylist listOfCountries
+	// The method setListOfCountries adds all the countries in each continent to the arraylist listOfCountries
 	//""NOTE: At the moment, each continent has only one country with the same name as the continent
-		
-    public void setListOfCountries(){
+	
+	public void setListOfCountries(){
 		 listOfCountries.addAll(NA.getContinentByRef());
 		 listOfCountries.addAll(SA.getContinentByRef());
 		 listOfCountries.addAll(EU.getContinentByRef());
 		 listOfCountries.addAll(AS.getContinentByRef());
 		 listOfCountries.addAll(AF.getContinentByRef());
 		 listOfCountries.addAll(AU.getContinentByRef());
+			
     }
-
+	
 	//Getters
+	
+	/**The method getNumOfCountries counts the number of countries in each arraylist of continents
+	 * and adds them together to get a total number of countries on the game board
+	 */
 	//""NOTE: We should get rid of this method once we finalize the number of countries we will use
 	// i.e. we can just set numOfCountries as a constant""
-
-    public int getNumOfCountries(){
+	
+	public int getNumOfCountries(){
 		int numOfCountries = 0;
 		numOfCountries += NA.getContinent().size();
 		numOfCountries += SA.getContinent().size();
@@ -81,16 +87,77 @@ public class Board{
 		numOfCountries += AU.getContinent().size();
 
 		return numOfCountries;
-    }
+	}
+
+	/**
+	* 
+	* @param selectedCountry is the country the player selects to attack or fortify from 
+	* @return adjacentCountries an arraylist that contains all the adjacent countries
+	*/
+	//""NOTE: It would be great if we found a better way to do this for the actual thing 
+	//other than just hardcoding 42 countries""
+	
+	public ArrayList<Country> getAdjacentCountries(Country selectedCountry){
+		//get the name of the selectedCountry and return the arraylist of countries adjacent to it
+		String cname = selectedCountry.getCountryName();
+		ArrayList<Country> adjacentCountries = new ArrayList<Country>();
+		switch(cname){
+			case "NORTH AMERICA":
+				adjacentCountries.add(SA.getContinent().get(0));
+				adjacentCountries.add(EU.getContinent().get(0));
+				adjacentCountries.add(AS.getContinent().get(0));
+			case "SOUTH AMERICA":
+				adjacentCountries.add(NA.getContinent().get(0));
+				adjacentCountries.add(AF.getContinent().get(0));
+			case "EUROPE":
+				adjacentCountries.add(NA.getContinent().get(0));
+				adjacentCountries.add(AF.getContinent().get(0));
+				adjacentCountries.add(AS.getContinent().get(0));
+			case "AFRICA":
+				adjacentCountries.add(SA.getContinent().get(0));
+				adjacentCountries.add(EU.getContinent().get(0));
+				adjacentCountries.add(AS.getContinent().get(0));
+			case "ASIA":
+				adjacentCountries.add(AF.getContinent().get(0));
+				adjacentCountries.add(EU.getContinent().get(0));
+				adjacentCountries.add(NA.getContinent().get(0));
+				adjacentCountries.add(AU.getContinent().get(0));
+			case "AUSTRALIA":
+				adjacentCountries.add(AS.getContinent().get(0));
+				
+		}
+		return adjacentCountries;
+	}
+	
+	/**
+	* @param playerNumber is player's number (starts from 0)
+	* @return possessedCountries is an arraylist that contains all the countries owned by the player
+	*/
+	
+	public ArrayList<Country> getPlayerCountries(int playerNumber){
+		ArrayList<Country> possessedCountries = new ArrayList<Country>();
+		for (int i=0; i <listOfCountries.size(); i++){
+			if (listOfCountries.get(i).getPossession() == playerNumber){
+				possessedCountries.add(listOfCountries.get(i));
+			}
+		}
+		for (int i=0;i<possessedCountries.size(); i++){
+			System.out.println(possessedCountries.get(i).getCountryName());
+		}
+		return possessedCountries;
+	}
+	
+	//Methods that initialize the game
 	
 	/** 
 	* @return numOfTroopsPP gives each player a number of troops to start with
 	* based on the number of players 
 	*/
 	//""NOTE: This needs to be updated when numOfPlayers isn't just 2 - follow rules of game""
-	
-	public int getNumOfTroopsPP(){
-        switch(numOfPlayers){
+		
+	public int setupNumOfTroopsPP(){
+	    int num = numOfPlayers;
+        switch(num){
             case 2:
                 numOfTroopsPP = 9;
             case 3:
@@ -110,85 +177,12 @@ public class Board{
     }
 	
 	/**
-	* @return numOfPlayers returns the number of players
-	*/
-
-    public int getNumOfPlayers(){
-        return numOfPlayers;
-    }
-
-
-	/**
-	* 
-	* @param selectedCountry is the country the player selects to attack or fortify from 
-	* @return adjacentCountries an arraylist that contains all the adjacent countries
-	*/
-	//""NOTE: It would be great if we found a better way to do this for the actual thing 
-	//other than just hardcoding 42 countries""
-	
-	public ArrayList<Country> getAdjacentCountries(Country selectedCountry){
-		//get the name of the selectedCountry and return the arraylist of countries adjacent to it
-		String cname = selectedCountry.getCountryName();
-		ArrayList<Country> adjacentCountries = new ArrayList<Country>();
-		switch(cname){
-			case "North America":
-				adjacentCountries.add(SA.getContinent().get(0));
-				adjacentCountries.add(EU.getContinent().get(0));
-				adjacentCountries.add(AS.getContinent().get(0));
-			case "South America":
-				adjacentCountries.add(NA.getContinent().get(0));
-				adjacentCountries.add(AF.getContinent().get(0));
-			case "Europe":
-				adjacentCountries.add(NA.getContinent().get(0));
-				adjacentCountries.add(AF.getContinent().get(0));
-				adjacentCountries.add(AS.getContinent().get(0));
-			case "Africa":
-				adjacentCountries.add(SA.getContinent().get(0));
-				adjacentCountries.add(EU.getContinent().get(0));
-				adjacentCountries.add(AS.getContinent().get(0));
-			case "Asia":
-				adjacentCountries.add(AF.getContinent().get(0));
-				adjacentCountries.add(EU.getContinent().get(0));
-				adjacentCountries.add(NA.getContinent().get(0));
-				adjacentCountries.add(AU.getContinent().get(0));
-			case "Australia":
-				adjacentCountries.add(AS.getContinent().get(0));
-				
-		}
-		return adjacentCountries;
-	}
-	
-	
-	/**
-	* 
-	* @param playerNumber is player's number (starts from 0)
-	* @return possessedCountries is an arraylist that contains all the countries owned by the player
+	* The method setupPossession distributes the number of troops per player among their respective countries
 	*/
 	
-	public ArrayList<Country> getPlayerCountries(int playerNumber){
-		ArrayList<Country> possessedCountries = new ArrayList<Country>();
-		for (int i=0; i <listOfCountries.size(); i++){
-			if (listOfCountries.get(i).getPossession() == playerNumber){
-				possessedCountries.add(listOfCountries.get(i));
-			}
-		}
-		return possessedCountries;
-	}
-				
-		
-		
-
-	//Methods that initialize the game
-
-	/**
-	* This method assigns each player's possession (based off the numOfCountriesPerPlayer)
-	* to each country 
-	*/	
-
-    public void setupPossession(){
+	public void setupPossession(){
 		//""NOTE: Need to get remainder for nondivisible countries with more than 2 players""
-
-
+		
         for (int i=0; i < numOfPlayers; i++){ //for each player
 			Random rand = new Random();
             int countryPlayerCounter = 0;
@@ -204,13 +198,11 @@ public class Board{
             }
         }
     }
-
-	/**
-	* This method distributes the number of troops per player among their respective countries
-	*/
-
+	
+	
+	
 	public void setupTroops(){
-			int troops = getNumOfTroopsPP();
+			int troops = setupNumOfTroopsPP();
 			int numOfCountriesPerPlayer = getNumOfCountries()/numOfPlayers;
 			for (int i=0; i < numOfPlayers; i++){// for each player
 				for (int j=0; j < listOfCountries.size(); j++){//for each country
@@ -225,6 +217,30 @@ public class Board{
 				}
 			}
 	}
-
-
+	
+	public void boardStatus(){
+		for (int i=0; i<continents.size(); i++){ //for each continent
+			ArrayList<Country> a = continents.get(i).getContinent();
+			for (int j=0; j<a.size(); j++){ //for each country
+				String countryName = a.get(j).getCountryName();
+				int numOfTroops = a.get(j).getNumOfTroops();
+				int playerNumber = a.get(j).getPossession();
+				System.out.println(countryName + " is owned by player " + playerNumber + " and has " + numOfTroops + " troops.");
+			}
+		}
+	}
+	
+	/**The method boardSetup initializes the continents and countries on the board
+	 * and initializes the troops and players belonging to said countries
+	 */
+	
+	public void boardSetup(){
+		setContinents();
+		setListOfCountries();
+		setupPossession();
+		setupTroops();
+	}
+	
+	
+	
 }
