@@ -5,21 +5,19 @@ import java.util.ArrayList;
  * for each of the 6 continents.
  *
  * @author Israa Farouk
- * @version 1.0
+ * @version 2.0
  * @since 2019-02-19
  */
 
 public class Continent{
 	
 	private String continentName;
-	private ArrayList<Country> countries = new ArrayList<Country>(); 
-	
-	//there will be 6 different array lists for each continent.
+	private ArrayList<Country> countries = new ArrayList<Country>();
 	
 	/**
 	Constructor
 	@param continentName is the name of the continent 
-	and will also determine how many countries are in each continent and set up the array list accordingly.
+	and will also determine how many countries are in each continent
 	*/
 	public Continent(String continentName){ 
 		this.continentName = continentName;
@@ -30,39 +28,43 @@ public class Continent{
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
 					countries.add(new Country("NORTH AMERICA"));
 				}
+				break;
 			
 			case "SOUTH AMERICA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
 					countries.add(new Country("SOUTH AMERICA"));
 				}
+				break;
 			
 			case "EUROPE":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
 					countries.add(new Country("EUROPE"));
 				}
+				break;
 			
 			case "ASIA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
 					countries.add(new Country("ASIA"));
 				}
+				break;
 			
 			case "AFRICA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
 					countries.add(new Country("AFRICA"));
 				}
+				break;
 				
 			case "AUSTRALIA":
 				for (int i =0; i < 1 ; i++){ //i<1 should be changed and will be different for each continent
 					countries.add(new Country("AUSTRALIA"));
 				}
+				break;
 			}
 	} 
 	
-	// getter methods
-	
-	/** This method returns an array list by value and NOT by reference
-	* @return countryList is an array list of countries in the continent
-	*/
+	/**
+	 * @return countryList returns an arraylist of type Country 
+	 */
 	
 	public ArrayList<Country> getContinent(){
 		ArrayList<Country> countryList = new ArrayList<Country>();
@@ -72,14 +74,15 @@ public class Continent{
 		return countryList;
 	}
 	
-	
-	/** This method returns an array list by reference therefore any changes made to the user's array list will change the original
-	* @return countryList is an array list of countries in the continent
-	*/
+	/**
+	 * @return countries returns the countries it gets from each continent arraylist
+	 */
 	
 	public ArrayList<Country> getContinentByRef(){
 		return countries;
 	}
 }
+
+
 
 
