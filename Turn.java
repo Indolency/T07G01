@@ -7,51 +7,62 @@ import java.util.Random;
  *
  * @author Sophia Ngo
  * @version 1.0
- * @since 2019-02-20
+ * @since 2019-02-21
  */
 public class Turn {
 
-    // Checks whose turn it is currently
-    private int currentPlayer = getCurrentPlayer();
-    // The number of troops a player has gained from countries they own
-    private int numOfTroopsGained = getNumOfTroopsGained();
-    // Player input of any number
-    private int playerNum;
-    // Player country selection
-    private Country playerCountry = getPlayerCountry();
+    //when country is given in parameter does it directly reference country on the board?
+
     // Total number of troops used to set
     private int totalTroops;
-    // Decides if player wants to end attack turn or not
-    private boolean playerEnd;
     // List of countries that the current player possesses
     private ArrayList<Country> listOfPossessions = new ArrayList<Country>();
-    private ArrayList<Country> listOfAdjacent = new ArrayList<Country>();
-    private Board board;
+
 
     /**
      * This method allows the players to choose countries to place their troops
      * at the beginning of their turn.
-     * @param numOfTroopsGained
+     * @param countryToDraft is the player's choice of country to place troops in.
+     * @param numOfTroops is the amount of troops the player wants to draft.
+     * @param currentPlayer is whose turn it is.
      */
-    public void draft(int numOfTroopsGained) {
+    public static void draft(Country countryToDraft, int numOfTroops, int currentPlayer) {
         System.out.println("--DRAFTING PHASE--");
 
-        playerNum = getPlayerNum();
+        // number of troops a player has gained from countries they own
+        int numOfTroopsGained = getNumOfTroopsGained();
+        // list of the countries that the player currently owns
+        ArrayList<Country> listOfPlayerCountries = new ArrayList<Country>();
+
+        /*
         // number of inside a country in total
         while (numOfTroopsGained != 0) {
             totalTroops = 0;
             // show player the number of troops
             System.out.println("You currently have" + numOfTroopsGained + "remaining.");
-            // show player the countries and troops currently inside (using a key)
-            System.out.println("counties that player owns");
+            // show player the countries and troops currently inside
+            System.out.println("Countries currently conquered: ")
+            for (country : listOfPlayerCountries) {
+                System.out.println(country);
+            }
             // ask player how many troops they want to place in that country
+        }
+        NOTE: This might make sense in another class, this should happen before
+        this method is called.
+        */
+
+        // check if the country given is one that is owned by the player
+        if (countryToDraft.getPossession() == currentPlayer) {
             // place the number of troops into that country
-            totalTroops = Country(playerCountry).getNumOfTroops() + playerNum;
-            playerCountry.setNumOfTroops(totalTroops);
+            totalTroops = countryToDraft.getNumOfTroops() + numOfTroops;
+            countryToDraft.setNumOfTroops(totalTroops);
             // take off the number of troops they placed
             numOfTroopsGained -= playerNum;
+        } else {
+            System.out.println("Country is not conquered!");
         }
     }
+
 
     /**
      * The player will choose a country to attack from, then choose an adjacent
@@ -67,15 +78,27 @@ public class Turn {
      *
      * This will be repeated until the player is done, or there are no more
      * countries they can attack from.
+     * @param board is the main board that the game is played on.
+     * @param countryToAttack is the country that the player wants to attack.
+     * @param playerDice is what the player rolled.
+     * @param opponentDice is what the opponent rolled.
+     * @param numOfTroops is the number of troops the player wants to move if won.
+     * @param currentPlayer is whose turn it is.
      */
-    public void attack() {
+    public static void attack(Board board, Country countryAttackFrom, Country countryToAttack,
+    int playerDice, int opponentDice, int numOfTroops, int currentPlayer)
+    {
         System.out.println("--ATTACKING PHASE--");
 
-        playerEnd = true;
-        // while player does not want to end or until no more to attack from
-        do {
+        ArrayList<Country> listOfAdjacent = new ArrayList<Country>();
+
+        // NOTE: I think the while loop should be outside of the attack method
+        // It should loop attack until player wants to end
+
+        /*
+        // check if they can still attack from country
+        if (numCountriesAvailable != 0) {
             // gets a list of the current countries available to attack
-            listOfAdjacent.clear();
             ArrayList<Country> currentAdjacent = new ArrayList<Country>();
             listOfPossessions.add(getPlayerCountries(currentPlayer));
             // for each country possessed, get adjacent countries, add into list
@@ -90,61 +113,80 @@ public class Turn {
 
             int numCountriesAvailable = listOfAdjacent.size();
             totalTroops = 0;
+            System.out.println("Countries that you can attack: ")
             // show countries to attack and number of troops in each
             for (Country country : listOfAdjacent) {
                 System.out.println(country.getCountryName() + ": " + country.getNumOfTroops());
             }
             // or end attack phase
+        }
+            */
 
-            // player will be prompted to roll a die
-            // opponent will also roll a die
-            // current player's dice
-            int dice1;
-            // opponent's dice
-            int dice2;
-            // the highest dice rolls will be compared
-            // if the highest dice rolls are from player
-            if (dice1 > dice2) {
-                // player will choose the amount of armies -1
-                totalTroops += playerCountry.getNumOfTroops();
-                if (totalTroops == 1) {
-                    playerNum = getPlayerNum();
-                    totalTroops += playerNum;
-                    playerCountry.setNumOfTroops(totalTroops);
-                    playerCountry.setPossession(currentPlayer);
-                } else {
-                    totalTroops--;
-                    playerCountry.setNumOfTroops(totalTroops);
-                }
-            //the highest dice rolls are from opponent
-            } else if (dice1 < dice2){
-                // player will lose 1 troop
-                // find which country that the attack was from
-            playerEnd = getPlayerEnd();
+        totalTroops = 0;
+        // check if amount of troops is valid
+        // if the highest dice rolls are from player, -1 troops or take country
+        if (playerDice > opponentDice) {
+            // if the troops in attacked country is 1, the country is conquered
+            totalTroops += countryToAttack.getNumOfTroops();
+            if (totalTroops == 1) {
+                totalTroops += numOfTroops;
+                countryToAttack.setNumOfTroops(totalTroops);
+                countryToAttack.setPossession(currentPlayer);
+            } else {
+                totalTroops--;
+                countryToAttack.setNumOfTroops(totalTroops);
             }
-
-        } while (playerEnd && numCountriesAvailable != 0);
+        //the highest dice rolls are from opponent
+        } else if (playerDice < opponentDice){
+            totalTroops += countryAttackFrom.getNumOfTroops();
+            // player will lose 1 troop
+            totalTroops--;
+            // find which country that the attack was from
+            // add to a list of countries that attacked from already
+        }
     }
+
 
     /**
      * The player will choose a country to move troops from, into an adjacent
-     * country of their choice. Then the turn will end.
+     * country of their choice, making sure that both countries are owned by
+     * the current player.
+     * @param countryTroopsFrom is country chosen to take troops from.
+     * @param countryToFortify is country chosen to fortify troops.
+     * @param numOfTroops is amount of troops the player wants to move.
+     * @param currentPlayer is whose turn it is.
      */
-    public void fortify() {
+    public static void fortify(Country countryFortifyFrom Country countryToFortify,
+    int numOfTroops, int currentPlayer)
+    {
         System.out.println("--FORTIFY PHASE--");
 
         totalTroops = 0;
-        playerNum = getPlayerNum();
+        /*
         // show countries the player has owned
-        System.out.println("countries that player owns");
+        System.out.println("Countries currently conquered: ")
+        for (country : listOfPlayerCountries) {
+            System.out.println(country);
         // player will choose a country
         // show countries adjacent to one picked
         board.getAdjacentCountries(playerCountry);
+        NOTE: I think this would also make sense elsewhere, should happen before
+        this method is called.
+        */
         // make sure country is one that they own
-        if (playerCountry.getPossession() == currentPlayer)
-            // choose amount of troops to move into new country
-            totalTroops = playerCountry.getNumOfTroops() + playerNum;
-        // end
+        if (countryFortifyFrom.getPossession() == currentPlayer
+        && countryToFortify.getPossession() == currentPlayer)
+        {
+            // take off troops from country
+            totalTroops = countryFortifyFrom.getNumOfTroops() - numOfTroops;
+            countryFortifyFrom.setNumOfTroops(totalTroops);
+            // add troops into new country
+            totalTroops = 0
+            totalTroops = countryToFortify.getNumOfTroops() + numOfTroops;
+            countryToFortify.setNumOfTroops(totalTroops);
+        } else {
+            System.out.println("Choose a country you have conquered!")
+        }
 
     }
 
