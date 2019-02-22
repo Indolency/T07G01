@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class Turn {
 
-    //when country is given in parameter does it directly reference country on the board?
+    //NOTE: when country is given in parameter does it directly reference country on the board?
 
     // Total number of troops used to set
     private int totalTroops;
