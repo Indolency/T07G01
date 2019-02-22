@@ -220,9 +220,7 @@ public class Board{
 	
 	public void boardStatus(){
 		for (int i=0; i<continents.size(); i++){ //for each continent
-			System.out.println("Print please");
 			ArrayList<Country> a = continents.get(i).getContinent();
-			//System.out.println(a.get(0).getCountryName());
 			for (int j=0; j<a.size(); j++){ //for each country
 				String countryName = a.get(j).getCountryName();
 				int numOfTroops = a.get(j).getNumOfTroops();
