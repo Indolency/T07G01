@@ -5,7 +5,7 @@ public class Country{
  * This Country class is part of the Risk game that stores information about the status of each country
  * before and during the game.
  * @author Israa Farouk
- * @version 1.0
+ * @version 2.0
  * @since 2019-02-19
  */
 	/** The variables for number of troops and possession are each assigned to each country
@@ -26,9 +26,9 @@ public class Country{
 	}
 	
 	public Country(Country c){
-		countryName = getCountryName();
-		numOfTroops = getNumOfTroops();
-		possession = getPossession();
+		countryName = c.getCountryName();
+		numOfTroops = c.getNumOfTroops();
+		possession = c.getPossession();
 	}
 	
 	
