@@ -151,7 +151,7 @@ public class Turn {
      * The player will choose a country to move troops from, into an adjacent
      * country of their choice, making sure that both countries are owned by
      * the current player.
-     * @param countryTroopsFrom is country chosen to take troops from.
+     * @param countryForitfyFrom is country chosen to take troops from.
      * @param countryToFortify is country chosen to fortify troops.
      * @param numOfTroops is amount of troops the player wants to move.
      * @param currentPlayer is whose turn it is.
