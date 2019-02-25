@@ -6,6 +6,8 @@ Open command prompt and locate the folder with the game file, then run the comma
 ```
 java game
 ```
+## How to Play
+The game begins by taking turns with the computer to place armies into the given continents. Now the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many countries as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
 
 ## Authors
 - Israa Farouk
