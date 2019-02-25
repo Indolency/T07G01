@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
  * @author Jana Osea, Israa Farouk, Nicole Langevin
  * @version 3.0
- * @since 2019-02-21
+ * @since 2019-02-24
  */
 
 public class Human{
