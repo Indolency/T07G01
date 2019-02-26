@@ -31,8 +31,11 @@ public class Game{
 			
 		}
 		
-		if (GameConfig.ifWon())
-			System.out.print("the game is won");
+		if (GameConfig.ifWon()){
+			System.out.println("-----------------------------------");
+			System.out.println("THE GAME HAS BEEN WON!!!!!!!!!!!!!!");
+			System.out.println("-----------------------------------");
+		}
 	}
 	
 	
