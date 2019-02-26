@@ -19,4 +19,3 @@ The game begins by taking turns with the computer to place armies into the given
 
 ## Acknowledgements
 - Recreation of the game Risk by Hasbro
-- Any code that's been used
