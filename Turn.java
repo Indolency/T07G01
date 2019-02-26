@@ -5,189 +5,407 @@ import java.util.Random;
  * This Turn class is part of the Risk game that will look at the input from the
  * player and allow them to draft, attack, or fortify during their turn.
  *
- * @author Sophia Ngo
- * @version 1.0
- * @since 2019-02-21
+ * @author Sophia Ngo, Jana Osea, Nicole Langevin
+ * @version 3.0
+ * @since 2019-02-24
  */
-public class Turn {
 
-    //NOTE: when country is given in parameter does it directly reference country on the board?
+public class Turn{
 
-    // Total number of troops used to set
-    private int totalTroops;
-    // List of countries that the current player possesses
-    private ArrayList<Country> listOfPossessions = new ArrayList<Country>();
-
-
-    /**
-     * This method allows the players to choose countries to place their troops
-     * at the beginning of their turn.
-     * @param countryToDraft is the player's choice of country to place troops in.
-     * @param numOfTroops is the amount of troops the player wants to draft.
-     * @param currentPlayer is whose turn it is.
-     */
-    public static void draft(Country countryToDraft, int numOfTroops, int currentPlayer) {
-        System.out.println("--DRAFTING PHASE--");
-
-        // number of troops a player has gained from countries they own
-        int numOfTroopsGained = getNumOfTroopsGained();
-        // list of the countries that the player currently owns
-        ArrayList<Country> listOfPlayerCountries = new ArrayList<Country>();
-
-        /*
-        // number of inside a country in total
-        while (numOfTroopsGained != 0) {
-            totalTroops = 0;
-            // show player the number of troops
-            System.out.println("You currently have" + numOfTroopsGained + "remaining.");
-            // show player the countries and troops currently inside
-            System.out.println("Countries currently conquered: ")
-            for (country : listOfPlayerCountries) {
-                System.out.println(country);
-            }
-            // ask player how many troops they want to place in that country
-        }
-        NOTE: This might make sense in another class, this should happen before
-        this method is called.
-        */
-
-        // check if the country given is one that is owned by the player
-        if (countryToDraft.getPossession() == currentPlayer) {
-            // place the number of troops into that country
-            totalTroops = countryToDraft.getNumOfTroops() + numOfTroops;
-            countryToDraft.setNumOfTroops(totalTroops);
-            // take off the number of troops they placed
-            numOfTroopsGained -= playerNum;
-        } else {
-            System.out.println("Country is not conquered!");
-        }
-    }
+	private static int playerNum = -1; //needs to be able to change in value to reflect player number
+	private static int numOfTroopsToDraft;
+	private static int diceRollFrom = 0;
+	private static int diceRollTo = 0;
+	private static Country countryAttackFrom;
+	private static Country countryToAttack;
+	private static Country countryFortifyFrom;
+	private static Country countryToFortify;
 
 
-    /**
-     * The player will choose a country to attack from, then choose an adjacent
-     * country to attack. The player will choose how many dice they want to roll
-     * depending on the number of troops they want to use in the attack. (Up to 3)
-     *
-     *     If the dice roll is won, the player will get to choose how many troops
-     *     to move into the country that was just attacked, the minimum being
-     *     the amount of dice they chose to roll.
-     *
-     *     If the dice roll is lost, the player will lose the amount of troops
-     *     from the number of dice.
-     *
-     * This will be repeated until the player is done, or there are no more
-     * countries they can attack from.
-     * @param board is the main board that the game is played on.
-     * @param countryToAttack is the country that the player wants to attack.
-     * @param playerDice is what the player rolled.
-     * @param opponentDice is what the opponent rolled.
-     * @param numOfTroops is the number of troops the player wants to move if won.
-     * @param currentPlayer is whose turn it is.
-     */
-    public static void attack(Board board, Country countryAttackFrom, Country countryToAttack,
-    int playerDice, int opponentDice, int numOfTroops, int currentPlayer)
-    {
-        System.out.println("--ATTACKING PHASE--");
+	//Setters
+	
+	
+	/**
+	 * @param country is the country the player is fortifying from 
+	 */
+	 
+	public static void setCountryFortifyFrom(Country country){
+		countryFortifyFrom = country;
+	}
 
-        ArrayList<Country> listOfAdjacent = new ArrayList<Country>();
+	/**
+	 * @param country is the country the player is fortifying  
+	 */
+	 
+	public static void setCountryToFortify(Country country){
+		countryToFortify = country;
+	}
 
-        // NOTE: I think the while loop should be outside of the attack method
-        // It should loop attack until player wants to end
-
-        /*
-        // check if they can still attack from country
-        if (numCountriesAvailable != 0) {
-            // gets a list of the current countries available to attack
-            ArrayList<Country> currentAdjacent = new ArrayList<Country>();
-            listOfPossessions.add(getPlayerCountries(currentPlayer));
-            // for each country possessed, get adjacent countries, add into list
-            for (Country country : listOfPossessions) {
-                currentAdjacent.add(getAdjacentCountries(country));
-                for (Country adjacent : currentAdjacent) {
-                    // make sure no duplicates
-                    if (!listOfAdjacent.contains(adjacent))
-                    listOfAdjacent.add(adjacent);
-                }
-            }
-
-            int numCountriesAvailable = listOfAdjacent.size();
-            totalTroops = 0;
-            System.out.println("Countries that you can attack: ")
-            // show countries to attack and number of troops in each
-            for (Country country : listOfAdjacent) {
-                System.out.println(country.getCountryName() + ": " + country.getNumOfTroops());
-            }
-            // or end attack phase
-        }
-            */
-
-        totalTroops = 0;
-        // check if amount of troops is valid
-        // if the highest dice rolls are from player, -1 troops or take country
-        if (playerDice > opponentDice) {
-            // if the troops in attacked country is 1, the country is conquered
-            totalTroops += countryToAttack.getNumOfTroops();
-            if (totalTroops == 1) {
-                totalTroops += numOfTroops;
-                countryToAttack.setNumOfTroops(totalTroops);
-                countryToAttack.setPossession(currentPlayer);
-            } else {
-                totalTroops--;
-                countryToAttack.setNumOfTroops(totalTroops);
-            }
-        //the highest dice rolls are from opponent
-        } else if (playerDice < opponentDice){
-            totalTroops += countryAttackFrom.getNumOfTroops();
-            // player will lose 1 troop
-            totalTroops--;
-            // find which country that the attack was from
-            // add to a list of countries that attacked from already
-        }
-    }
+	/**
+	 * @param country is the country the player is attacking from 
+	 */
+	 
+	public static void setCountryAttackFrom(Country country){
+		countryAttackFrom = country;
+	}
+	
+	/**
+	 * @param country is the country the player is attacking  
+	 */
+	 
+	public static void setCountryToAttack(Country country){
+		countryToAttack = country;
+	}
+	
+	/**
+	 * This method sets the number of the player that currently is playing their turn
+	 * @param num is the number of the current player 
+	 */	
+	 
+	public static void setPlayerNum(int num){
+		playerNum = num;
+	}
 
 
-    /**
-     * The player will choose a country to move troops from, into an adjacent
-     * country of their choice, making sure that both countries are owned by
-     * the current player.
-     * @param countryForitfyFrom is country chosen to take troops from.
-     * @param countryToFortify is country chosen to fortify troops.
-     * @param numOfTroops is amount of troops the player wants to move.
-     * @param currentPlayer is whose turn it is.
-     */
-    public static void fortify(Country countryFortifyFrom Country countryToFortify,
-    int numOfTroops, int currentPlayer)
-    {
-        System.out.println("--FORTIFY PHASE--");
+	//Getters
+	
+	
+	/**
+	 * @return playerNum is the number of the current player 
+	 */	
+	
+	public static int getPlayerNum(){
+		return playerNum;
+	}
 
-        totalTroops = 0;
-        /*
-        // show countries the player has owned
-        System.out.println("Countries currently conquered: ")
-        for (country : listOfPlayerCountries) {
-            System.out.println(country);
-        // player will choose a country
-        // show countries adjacent to one picked
-        board.getAdjacentCountries(playerCountry);
-        NOTE: I think this would also make sense elsewhere, should happen before
-        this method is called.
-        */
-        // make sure country is one that they own
-        if (countryFortifyFrom.getPossession() == currentPlayer
-        && countryToFortify.getPossession() == currentPlayer)
-        {
-            // take off troops from country
-            totalTroops = countryFortifyFrom.getNumOfTroops() - numOfTroops;
-            countryFortifyFrom.setNumOfTroops(totalTroops);
-            // add troops into new country
-            totalTroops = 0
-            totalTroops = countryToFortify.getNumOfTroops() + numOfTroops;
-            countryToFortify.setNumOfTroops(totalTroops);
-        } else {
-            System.out.println("Choose a country you have conquered!")
-        }
+	/**
+	 * @return countryAttackFrom is the country the player is attacking from  
+	 */	
+		
+	public static Country getCountryAttackFrom(){
+		return countryAttackFrom;
+	}
 
-    }
+	/**
+	 * @return countryToAttack is the country the player is attacking  
+	 */	
+		
+	public static Country getCountryToAttack(){
+		return countryToAttack;
+	}
+
+	/**
+	 * @return countryFortifyFrom is the country the player is fortifying from  
+	 */	
+		
+	public static Country getCountryFortifyFrom(){
+		return countryFortifyFrom;
+	}
+
+	/**
+	 * @return countryToFortify is the country the player is fortifying   
+	 */	
+		
+	public static Country getCountryToFortify(){
+		return countryToFortify;
+	}
+
+	/**
+	 * @return numOfTroopsToDraft is the number of troops the player chooses to fortify  
+	 */	
+		
+	public static int getNumOfTroopsToDraft(){
+		return numOfTroopsToDraft;
+	}
+
+	/**
+	 * @return diceRollFrom is the dice roll of the current player  
+	 */	
+		
+	public static int getDiceRollFrom(){
+		return diceRollFrom;
+	}
+
+	/**
+	 * @return diceRollTo is the dice roll of the player being attacked
+	 */	
+		
+	public static int getDiceRollTo(){
+		return diceRollTo;
+	}
+
+	
+	//Human Methods
+
+	/**
+	 * The method draft() takes an input from the user in Human class of type country
+	 * and drafts troops into the countries owned and chosen by the user
+	 */
+	 
+	public static void draft(){
+		setPlayerNum(0);
+		numOfTroopsToDraft = GameConfig.getNumOfTroopsGained();
+		while (numOfTroopsToDraft > 0){
+			Human.possessionStatus();
+			String countryName = Human.inputForDraft();
+			ArrayList<Country> countries = Board.getPlayerCountries(playerNum);
+			for (int i=0; i<countries.size(); i++){
+				String countryNameEdited = countryName.replaceAll(" ", "");
+				if(countryNameEdited.equalsIgnoreCase(countries.get(i).getCountryName().replaceAll(" ", ""))){
+				countries.get(i).addNumOfTroops(1);
+				numOfTroopsToDraft--;
+				}
+			}
+		}
+	}
+
+	/**
+	 * The method attack() takes input from the user in Human class of type country
+	 * and attacks countries of another player from countries of the user.
+	 */
+	 
+	public static void attack(){
+		while (Human.inputForAttackConfirmation() && GameConfig.ifWon() == false){
+			Country from = Human.inputCountryAttackFrom();
+			setCountryAttackFrom(from);
+			if (Human.checkAdjacentOpponent(countryAttackFrom) && (from.getNumOfTroops() > 1)){
+					Country to = Human.inputCountryToAttack();
+					setCountryToAttack(to);
+					int playerTroops = from.getNumOfTroops();
+					int opponentTroops = to.getNumOfTroops();
+					while (((playerTroops>1) && (opponentTroops>0)) && Human.inputForAttackContinuation()){
+						diceRollFrom= Dice.diceRoll();
+						diceRollTo = Dice.diceRoll();
+						Human.outputDiceRolls();
+						if (diceRollFrom > diceRollTo){
+							if (opponentTroops == 1){
+								from.setNumOfTroops(1);
+								to.setNumOfTroops(playerTroops - 1);
+								to.setPossession(0);
+								opponentTroops = 0;
+								Human.outputGainedCountry();
+								System.out.println();
+								System.out.println("-----------------------------------");
+								System.out.println("A COUNTRY HAS BEEN CONQUERED!!!!!!!");
+								System.out.println("-----------------------------------");
+								System.out.println();
+							}
+							else{
+								opponentTroops--;
+								to.setNumOfTroops(opponentTroops);
+								Human.outputAttackWon();
+							}
+						}
+						else if (diceRollFrom <= diceRollTo){
+							playerTroops--;
+							from.setNumOfTroops(playerTroops);
+							Human.outputAttackLost();
+						}
+					}
+				}
+			}
+		}
+
+
+	/**
+	 * The method fortify() takes input from the user in Human class of type country
+	 * and moves the user owned troops from one country to another, said countries being adjacent and owned by the user.
+	 */
+	 
+    public static void fortify(){
+			setPlayerNum(0);
+			ArrayList<Country> countries = Board.getPlayerCountries(playerNum);
+			boolean valid = true;
+			for (int i=0; i<countries.size(); i++){
+				if(countries.get(i).getNumOfTroops() >=2){
+					break;
+				}
+				else{
+					valid = false;
+				}
+			}
+
+			while(valid && Human.inputForFortifyConfirmation()){
+				int currentPlayer = playerNum;
+				Country countryFortifyFrom = Human.inputCountryFortifyFrom();
+				setCountryFortifyFrom(countryFortifyFrom);
+				if(Human.countryHasAdjacent(countryFortifyFrom)){
+		  		Country countryToFortify = Human.inputCountryToFortify();
+					setCountryToFortify(countryToFortify);
+					int numOfTroopsToFortify = Human.inputNumOfTroopsToFortify();
+					if ((countryFortifyFrom.getPossession() == currentPlayer) && (countryToFortify.getPossession() == currentPlayer)){
+							int numOfTroopsLeftBehind = countryFortifyFrom.getNumOfTroops() - numOfTroopsToFortify;
+							countryFortifyFrom.setNumOfTroops(numOfTroopsLeftBehind);
+							countryToFortify.addNumOfTroops(numOfTroopsToFortify);
+							Human.outputFortifyStatus();
+							break;
+						}
+					}
+				}
+			}
+
+
+	//AI Methods
+
+
+	/**
+	 * The method AIDraft() takes a probability based choice of type Country from AI class
+	 * and drafts troops into the countries owned by AI.
+	 */
+	 
+	public static void AIDraft(){
+		setPlayerNum(1);
+		numOfTroopsToDraft = GameConfig.getNumOfTroopsGained();
+		while (numOfTroopsToDraft > 0){
+			AI.possessionStatus();
+			Country countryToDraft = AI.inputForDraft();
+			countryToDraft.addNumOfTroops(1);
+			numOfTroopsToDraft--;
+		}
+	}
+
+	/**
+	 * The method AIAttack() takes probability based choices of type Country from AI class
+	 * and attacks countries of another player from countries of AI.
+	 */
+	 
+	public static void AIAttack(){
+		setPlayerNum(1);
+		while (AI.inputForAttackConfirmation() && GameConfig.ifWon() == false){
+			Country countryAttackFrom = AI.inputCountryAttackFrom();
+			setCountryAttackFrom(countryAttackFrom);
+			Country countryToAttack = AI.inputCountryToAttack();
+			setCountryToAttack(countryToAttack);
+			int playerTroops = countryAttackFrom.getNumOfTroops(); 
+			int opponentTroops = countryToAttack.getNumOfTroops();
+			int currentPlayer = playerNum;
+			System.out.println("The player " + currentPlayer + " is attacking from " + countryAttackFrom.getCountryName() + " which has " + playerTroops);
+			System.out.println("The player " + currentPlayer + " is attacking " + countryToAttack.getCountryName() + " which has " + opponentTroops);
+			while (((playerTroops>1) && (opponentTroops>0)) && AI.inputForAttackConfirmation() && GameConfig.ifWon()==false){
+				diceRollFrom = Dice.diceRoll();
+				diceRollTo = Dice.diceRoll();
+				AI.outputDiceRolls();
+				if (diceRollFrom > diceRollTo){
+					if (opponentTroops == 1){
+						countryAttackFrom.setNumOfTroops(1);
+						countryToAttack.setPossession(currentPlayer);
+						countryToAttack.setNumOfTroops(playerTroops-1);
+						opponentTroops = 0;
+						AI.outputGainedCountry();
+						System.out.println();
+						System.out.println("-----------------------------------");
+						System.out.println("A COUNTRY HAS BEEN CONQUERED!!!!!!!");
+						System.out.println("-----------------------------------");
+						System.out.println();
+					}
+					else{
+						opponentTroops--;
+						countryToAttack.setNumOfTroops(opponentTroops);
+						AI.outputAttackWon();
+					}
+				}
+				else if (diceRollFrom <= diceRollTo){
+					playerTroops--;
+					countryAttackFrom.setNumOfTroops(playerTroops);
+					AI.outputAttackLost();
+				}
+			}
+		}
+	}
+
+
+
+
+	/**
+	 * The method AIFortify() takes probability based choices of type Country from AI class
+	 * and moves AI owned troops from one country to another, said countries being adjacent and owned by AI.
+	 */
+	 
+	public static void AIFortify(){
+		setPlayerNum(1);
+		Country countryToFortify = AI.inputCountryToFortify();
+		setCountryToFortify(countryToFortify);
+		Country countryFortifyFrom = AI.inputCountryFortifyFrom();
+		setCountryFortifyFrom(countryFortifyFrom);
+		AI.inputForFortifyConfirmation();
+		if (AI.inputForFortifyConfirmation()){
+			int numOfTroopsToFortify = AI.inputNumOfTroopsToFortify();
+			int numOfTroopsLeftBehind = countryFortifyFrom.getNumOfTroops() - numOfTroopsToFortify;
+			countryFortifyFrom.setNumOfTroops(numOfTroopsLeftBehind);
+			countryToFortify.addNumOfTroops(numOfTroopsToFortify);
+			
+			System.out.println(countryFortifyFrom.getCountryName()+" has "+ numOfTroopsToFortify +" less troops. It now has "+countryFortifyFrom.getNumOfTroops()+" troops.");
+			System.out.println(countryToFortify.getCountryName()+" has been fortified and now has "+countryToFortify.getNumOfTroops()+" troops.");
+
+			AI.outputFortifyStatus();
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+	public static void AIFortify(){
+		ArrayList<Country> countries = Board.getPlayerCountries(playerNum);
+		boolean valid = true;
+		for (int i=0; i<countries.size(); i++){
+			if(countries.get(i).getNumOfTroops() >=2){
+				break;
+			}
+			else{
+				valid = false;
+			}
+		}
+			while(valid && AI.inputForFortifyConfirmation()){
+			int currentPlayer = playerNum;
+			Country countryFortifyFrom = AI.inputCountryFortifyFrom();
+			setCountryFortifyFrom(countryFortifyFrom);
+			if(AI.countryHasAdjacent(countryFortifyFrom)){
+	  		Country countryToFortify = AI.inputCountryToFortify();
+				setCountryToFortify(countryToFortify);
+				int numOfTroopsToFortify = AI.inputNumOfTroopsToFortify();
+				if ((countryFortifyFrom.getPossession() == currentPlayer) && (countryToFortify.getPossession() == currentPlayer)){
+						int numOfTroopsLeftBehind = countryFortifyFrom.getNumOfTroops() - numOfTroopsToFortify;
+						countryFortifyFrom.setNumOfTroops(numOfTroopsLeftBehind);
+						countryToFortify.addNumOfTroops(numOfTroopsToFortify);
+						AI.outputFortifyStatus();
+						break;
+				}
+			}
+			}
+	}
+	*/
 
 }
