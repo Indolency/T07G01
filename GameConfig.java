@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class GameConfig{
 	
-	/**
+    /**
      * This method analyses the board and checks if the game has been won.
      * @return won is true if the game has been won and is false otherwise.
      */
@@ -32,9 +32,9 @@ public class GameConfig{
 		return won;
 	}	
 	
-	/**
+    /**
      * This method determines how many troops each player receives to draft
-	 * based on how many countries they own.
+     * based on how many countries they own.
      * @return pcountries.size() is the number of troops gained by that player 
      */
 	
