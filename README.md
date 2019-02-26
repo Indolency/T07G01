@@ -1,5 +1,5 @@
 # Risk Board Game
-Risk is a strategy based board game. The goal of the game is to conquer all of the continents in the game by taking turns drafting, attacking, and fortifying to take continents from other people.
+This is based off Risk which is a strategy based board game. The map the University of Calgay's campus. The goal of the game is to conquer all of the zones in the game by taking turns drafting, attacking, and fortifying to take zones from other people.
 
 ## Getting Started
 Extract the "Demo1" zip file.\
@@ -13,8 +13,7 @@ java Game
 ```
 
 ## How to Play
-The game begins by taking turns with the computer to place armies into the given continents. Now the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many countries as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
-At this point in time the game only works with 2 players.
+The game begins by taking turns with the computer to place armies into given zones that have been randomly assigned. Now, the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many buildings as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically. At this point in time the game only works with 2 players.
 
 ## Authors
 - Israa Farouk
