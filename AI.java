@@ -8,7 +8,7 @@ import java.util.Random;
  *
  * @author Nicole Langevin
  * @version 2.0
- * @since 2019-02-25
+ * @since 2019-02-24
  */
 
 public class AI{
@@ -20,15 +20,6 @@ public class AI{
 	private static ArrayList<Country> countriesToFortifyFrom;
 
 	//Setters
-	
-	/**
-	 * This method sets the number of the player that currently is playing their turn
-	 * @param num is the number of the current player 
-	 */	
-	
-	public static void setPlayerNum(int num){
-		playerNum = num;
-	}
 	
 	/**
 	 * @param country is the country the AI is attacking from 
@@ -47,15 +38,6 @@ public class AI{
 	}
 	
 	//Getters
-	
-	/**
-	 * This method gets the number of the player that currently is playing their turn
-	 * @return playerNum is the number of the current player 
-	 */	
-	
-	public static int getPlayerNum(){
-		return playerNum;
-	}
 	
 	/**
 	 * @return attackingCountry is the country the AI is attacking from 
@@ -80,9 +62,10 @@ public class AI{
 	 */	
 	
 	public static void possessionStatus(){
+		Turn.setPlayerNum(0);
 		System.out.println();
 		System.out.println("----------DRAFT----------");
-		ArrayList<Country> countries = Board.getPlayerCountries(playerNum);
+		ArrayList<Country> countries = Board.getPlayerCountries(Turn.getPlayerNum());
 		for (int i=0; i<countries.size(); i++){
 			System.out.println(countries.get(i).getCountryName() +" has "+ countries.get(i).getNumOfTroops()+" troops");
 		}	
@@ -96,7 +79,8 @@ public class AI{
 	 */
 	
 	public static ArrayList<Country> getCountriesToChooseFrom(){
-		ArrayList<Country> AICountries = Board.getPlayerCountries(playerNum);
+		Turn.setPlayerNum(0);
+		ArrayList<Country> AICountries = Board.getPlayerCountries(Turn.getPlayerNum());
 		ArrayList<Country> countriesToChooseFrom = new ArrayList<Country>();
 		
 		//Checks each country AI owns
@@ -107,7 +91,7 @@ public class AI{
 			//if the adjacent country is not owned by AI, the AI country is added to the list of countriesToChooseFrom
 			for (int j=0; j<adjacentCountries.size(); j++){
 				Country checkCountry = adjacentCountries.get(j);
-				if (checkCountry.getPossession() != playerNum)
+				if (checkCountry.getPossession() != Turn.getPlayerNum())
 					countriesToChooseFrom.add(AIOwnedCountry);
 			}
 		}
@@ -149,7 +133,8 @@ public class AI{
 	 */	
 	
 	public static boolean inputForAttackConfirmation(){
-		ArrayList<Country> countries = Board.getPlayerCountries(playerNum);
+		Turn.setPlayerNum(0);
+		ArrayList<Country> countries = Board.getPlayerCountries(Turn.getPlayerNum());
 		ArrayList<Boolean> listOfResponses = new ArrayList<Boolean>();
 		boolean response = false;
 		
@@ -172,6 +157,18 @@ public class AI{
 		if (getCountriesToChooseFrom().size()<1)
 			response = false;
 		
+		//Final check that all countries AI can choose from have more than 1 troops
+		int counter = 0;
+		ArrayList<Country> checkNumOfTroops = new ArrayList<Country>();
+		for (int i=0; i<getCountriesToChooseFrom().size(); i++){
+			counter += 1;
+			if (getCountriesToChooseFrom().get(i).getNumOfTroops()<2){
+				checkNumOfTroops.add(getCountriesToChooseFrom().get(i));
+			}
+		}
+		if (checkNumOfTroops.size() == counter)
+			response = false;
+		
 		
 		if (response == false){
 			System.out.println();
@@ -190,12 +187,13 @@ public class AI{
 	 */	
 	
 	public static Country inputCountryAttackFrom(){
+		Turn.setPlayerNum(0);
 		System.out.println();
 		System.out.println("----------ATTACK----------");
 		
 		Country response = new Country();
 		Country countryNotAttackFrom = new Country();
-		ArrayList<Country> AICountries = Board.getPlayerCountries(playerNum);//By reference
+		ArrayList<Country> AICountries = Board.getPlayerCountries(Turn.getPlayerNum());//By reference
 		ArrayList<Country> countriesAttackFrom = new ArrayList<Country>();
 		
 		
@@ -243,11 +241,12 @@ public class AI{
 	 */	
 	
 	public static Country inputCountryToAttack(){
+		Turn.setPlayerNum(0);
 		Country response = new Country();
 		//adjacentCountries is an arraylist of countries adjacent to the country AI is attacking from
 		ArrayList<Country> adjacentCountries = Board.getAdjacentCountries(attackingCountry); 
 		ArrayList<Country> countriesToAttack = new ArrayList<Country>();
-		ArrayList<Country> checkCountryList = Board.getPlayerCountries(playerNum); //list of countries AI owns
+		ArrayList<Country> checkCountryList = Board.getPlayerCountries(Turn.getPlayerNum()); //list of countries AI owns
 		
 		
 		//For every country adjacent to the country AI is attacking from, if the country is not owned by AI,
@@ -256,7 +255,7 @@ public class AI{
 			Country checkAdjacentOpponent = adjacentCountries.get(i);
 			for (int j=0; j<Board.getListOfCountries().size(); j++){ //By reference
 				if (checkAdjacentOpponent.getCountryName().equalsIgnoreCase(Board.getListOfCountries().get(j).getCountryName())){
-					if (checkAdjacentOpponent.getPossession() != playerNum)
+					if (checkAdjacentOpponent.getPossession() != Turn.getPlayerNum())
 						countriesToAttack.add(Board.getListOfCountries().get(j));
 				}
 			}
@@ -338,7 +337,8 @@ public class AI{
 	 */
 	 
 	public static ArrayList<Country> getCountriesToFortifyFrom(){
-		ArrayList<Country> AICountries = Board.getPlayerCountries(playerNum);
+		Turn.setPlayerNum(0);
+		ArrayList<Country> AICountries = Board.getPlayerCountries(Turn.getPlayerNum());
 		ArrayList<Country> countriesToFortifyFrom = new ArrayList<Country>();
 		
 		//Checks each country AI owns
@@ -349,7 +349,7 @@ public class AI{
 			//if the adjacent country is owned by AI, the AI country is added to the list of countriesToFortifyFrom
 			for (int j=0; j<adjacentCountries.size(); j++){
 				Country checkCountry = adjacentCountries.get(j);
-				if (checkCountry.getPossession() == playerNum)
+				if (checkCountry.getPossession() == Turn.getPlayerNum())
 					countriesToFortifyFrom.add(checkCountry);
 			}
 		}
@@ -408,6 +408,7 @@ public class AI{
 	 */
 	 
 	public static Country inputCountryFortifyFrom(){
+		Turn.setPlayerNum(0);
 		Country countryToFortify = Turn.getCountryToFortify();
 		ArrayList<Country> possibleCountriesFortifyFrom = Board.getAdjacentCountries(countryToFortify);
 		ArrayList<Country> countriesFortifyFrom = new ArrayList<Country>();;
@@ -428,7 +429,7 @@ public class AI{
 		
 		//Final check that the country AI is fortifiying from is owned by AI
 		for (int i=0; i<countriesFortifyFrom.size(); i++){
-			if (countriesFortifyFrom.get(i).getPossession() != playerNum)
+			if (countriesFortifyFrom.get(i).getPossession() != Turn.getPlayerNum())
 				countriesFortifyFrom.remove(countriesFortifyFrom.get(i));
 		}
 		
