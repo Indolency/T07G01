@@ -9,14 +9,14 @@
 
 public class Game{
 
-	public static void setup(){
+	public static void setup(){ //pre game setup
 		int numOfPlayers = Human.getNumOfPlayers(); //gets the number of players playing the game from the user
 		Board gameBoard = new Board(numOfPlayers);
 		gameBoard.boardSetup(); //board set up
 		gameBoard.boardStatus();//board status displays the ownership and troops in each country
 	}
 
-	public static void play(){
+	public static void play(){ // main game loop
 		while (GameConfig.ifWon() == false){ //while the game is not won
 			Human.draftTurn(); //player gets to draft
 			Human.attackTurn(); //player gets to attack
