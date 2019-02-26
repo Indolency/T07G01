@@ -4,7 +4,7 @@ Risk is a strategy based board game. The goal of the game is to conquer all of t
 ## Getting Started
 Open command prompt and locate the folder with the game file, then run the command.
 ```
-java game
+java Game
 ```
 ## How to Play
 The game begins by taking turns with the computer to place armies into the given continents. Now the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many countries as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
