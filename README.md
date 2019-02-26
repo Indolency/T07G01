@@ -2,7 +2,7 @@
 Risk is a strategy based board game. The goal of the game is to conquer all of the continents in the game by taking turns drafting, attacking, and fortifying to take continents from other people.
 
 ## Getting Started
-Exact the "Demo 1" zip file.
+Extract the "Demo 1" zip file.
 Open command prompt and navigate into the "Demo 1" folder, then run the command:
 ```
 java Game
