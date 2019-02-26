@@ -8,15 +8,24 @@
 
 
 public class Game{
+	
+	/** 
+	*This method is resposible for the pre game setup
+	* It setups the board and displays the board status.
+	*/
 
-	public static void setup(){ //pre game setup
+	public static void setup(){ 
 		int numOfPlayers = Human.getNumOfPlayers(); //gets the number of players playing the game from the user
 		Board gameBoard = new Board(numOfPlayers);
 		gameBoard.boardSetup(); //board set up
 		gameBoard.boardStatus();//board status displays the ownership and troops in each country
 	}
+	
+	/** 
+	*This method is the main game loop of the game
+	*/
 
-	public static void play(){ // main game loop
+	public static void play(){ 
 		while (GameConfig.ifWon() == false){ //while the game is not won
 			Human.draftTurn(); //player gets to draft
 			Human.attackTurn(); //player gets to attack
