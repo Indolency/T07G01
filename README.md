@@ -3,7 +3,7 @@ Risk is a strategy based board game. The goal of the game is to conquer all of t
 
 ## Getting Started
 Extract the "Demo1" zip file.
-Open command prompt and navigate into the "Demo 1" folder, then run the command:
+Open command prompt and navigate into the "Demo1" folder, then run the command:
 ```
 java Game
 ```
