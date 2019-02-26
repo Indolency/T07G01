@@ -145,7 +145,6 @@ public class Human{
    *    countries and false is there are none
   */
   public static boolean checkAdjacentOpponent(Country countryFrom){
-        System.out.println("You cannot attack from this country.");
         boolean response = true;
         Country attackingCountry = Turn.getCountryAttackFrom();
         ArrayList<Country> adjacent = Board.getAdjacentCountries(attackingCountry);
