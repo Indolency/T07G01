@@ -9,6 +9,7 @@ java Game
 ```
 ## How to Play
 The game begins by taking turns with the computer to place armies into the given continents. Now the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many countries as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
+At this point in time the game only works with 2 players.
 
 ## Authors
 - Israa Farouk
