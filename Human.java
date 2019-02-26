@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class Human{
 
-  private static int playerNum = 0;
  /** Represents the country the player chooses to attack from
  */
   private static Country attackingCountry;
@@ -24,15 +23,6 @@ public class Human{
  */
   private static Country countryFortifyFrom;
 
- // Getter
-  public static int getPlayerNum(){
-    return playerNum;
-  }
-
- // Setter
-  public static void setPlayerNum(int num){
-    playerNum = num;
-  }
 
  /** This method is not a getter. It is a prompt in the console to the user asking
   * how many players they would like to have for the game.
@@ -62,7 +52,8 @@ public class Human{
   public static void possessionStatus(){
     System.out.println();
     System.out.println("----------DRAFT----------");
-    ArrayList<Country> countries = Board.getPlayerCountries(playerNum);
+	Turn.setPlayerNum(0);
+    ArrayList<Country> countries = Board.getPlayerCountries(Turn.getPlayerNum());
     for (int i=0; i<countries.size(); i++){
       System.out.println(countries.get(i).getCountryName() +" has "+ countries.get(i).getNumOfTroops()+" troops");
     }
@@ -130,7 +121,8 @@ public class Human{
   public static Country inputCountryAttackFrom(){
     System.out.println();
     System.out.println("----------ATTACK----------");
-    ArrayList<Country> countriesList = Board.getPlayerCountries(playerNum);
+	Turn.setPlayerNum(0);
+    ArrayList<Country> countriesList = Board.getPlayerCountries(Turn.getPlayerNum());
     Scanner input = new Scanner(System.in);
     boolean invalid = true;
 
@@ -157,7 +149,7 @@ public class Human{
         boolean response = true;
         Country attackingCountry = Turn.getCountryAttackFrom();
         ArrayList<Country> adjacent = Board.getAdjacentCountries(attackingCountry);
-        ArrayList<Country> opponent = Board.getPlayerCountries(AI.getPlayerNum());
+        ArrayList<Country> opponent = Board.getPlayerCountries(1);//needs to be changed later
         ArrayList<Country> correct = new ArrayList<Country>();
 
         for (int i=0; i<adjacent.size(); i++){
@@ -181,8 +173,9 @@ public class Human{
    *    orginal board that represents the country the user wants to attack
   */
   public static Country inputCountryToAttack(){
+	Turn.setPlayerNum(0);
     ArrayList<Country> adjacent = Board.getAdjacentCountries(attackingCountry);
-    ArrayList<Country> opponent = Board.getPlayerCountries(playerNum+1);
+    ArrayList<Country> opponent = Board.getPlayerCountries(Turn.getPlayerNum()+1);
     ArrayList<Country> correct = new ArrayList<Country>();
 
     for (int i=0; i<adjacent.size(); i++){
@@ -320,7 +313,8 @@ public class Human{
    *    board that represents the country to foritify from
   */
   public static Country inputCountryFortifyFrom(){
-    ArrayList<Country> countriesList = Board.getPlayerCountries(playerNum);
+	Turn.setPlayerNum(0);
+    ArrayList<Country> countriesList = Board.getPlayerCountries(Turn.getPlayerNum());
     Scanner input = new Scanner(System.in);
     boolean invalid = true;
     Country response = new Country();
@@ -349,12 +343,13 @@ public class Human{
   */
   public static boolean countryHasAdjacent(Country countryFrom){
     boolean response = true;
+	Turn.setPlayerNum(0);
     ArrayList<Country> adjacent = Board.getAdjacentCountries(countryFrom);
     ArrayList<Country> correct = new ArrayList<Country>();
     for(int i=0; i<adjacent.size(); i++){
       String adjName = adjacent.get(i).getCountryName();
       int adjPossession = adjacent.get(i).getPossession();
-      if(adjPossession == playerNum){
+      if(adjPossession == Turn.getPlayerNum()){
           correct.add(adjacent.get(i));
       }
     }
@@ -373,7 +368,8 @@ public class Human{
    *    board that represents the country to foritify
   */
   public static Country inputCountryToFortify(){
-    ArrayList<Country> countriesList = Board.getPlayerCountries(playerNum);
+	Turn.setPlayerNum(0);
+    ArrayList<Country> countriesList = Board.getPlayerCountries(Turn.getPlayerNum());
     Scanner input = new Scanner(System.in);
     boolean invalid = true;
     Country response = new Country();
