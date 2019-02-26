@@ -5,7 +5,7 @@ import java.util.Random;
  * This Board class is part of the Risk game that will initialize the board and update it 
  * throughout the game. ""NOTE: at this point Board only initializes the board""
  *
- * @author Israa Farouk, Jana Osea, Nicole Langevin
+ * @author Israa Farouk, Nicole Langevin, Jana Osea
  * @version 3.0
  * @since 2019-02-21
  */
