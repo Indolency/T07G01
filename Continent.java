@@ -15,10 +15,11 @@ public class Continent{
 	private ArrayList<Country> countries = new ArrayList<Country>();
 	
 	/**
-	Constructor
-	@param continentName is the name of the continent 
-	and will also determine how many countries are in each continent
+	 * Constructor
+	 * @param continentName is the name of the continent 
+	 * and will also determine how many countries are in each continent
 	*/
+	
 	public Continent(String continentName){ 
 		this.continentName = continentName;
 		
@@ -82,7 +83,5 @@ public class Continent{
 		return countries;
 	}
 }
-
-
 
 
