@@ -1,57 +1,96 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * This Game class is the main class of the Risk game
  * it contains the game loop that runs the game.
- * @author Israa Farouk
- * @version 1.0
- * @since 2019-02-25
+ * @version 2.0
+ * @author
+ * @since 2019-03-02
  */
 
-
 public class Game{
-	
-	/** 
-	*This method is resposible for the pre game setup
-	* It setups the board and displays the board status.
-	*/
 
-	public static void setup(){ 
-		int numOfPlayers = Human.getNumOfPlayers(); //gets the number of players playing the game from the user
-		Board gameBoard = new Board(numOfPlayers);
-		gameBoard.boardSetup(); //board set up
-		gameBoard.boardStatus();//board status displays the ownership and troops in each country
-	}
-	
-	/** 
-	*This method is the main game loop of the game
-	*/
+  private Board gameBoard;
+  private GameConfig gameConfig;
 
-	public static void play(){ 
-		while (GameConfig.ifWon() == false){ //while the game is not won
-			Human.draftTurn(); //player gets to draft
-			Human.attackTurn(); //player gets to attack
-			if (GameConfig.ifWon() == true) //checks if the player's attack was the winning move
-				break;
-			Human.fortifyTurn(); //player gets to fortify
-			AI.draftTurn(); //AI drafts
-			AI.attackTurn(); //AI gets to attack
-			if (GameConfig.ifWon() == true) //checks if the AI's attack was the winning move
-				break;
-			AI.fortifyTurn(); //AI gets to fortify
+  /**
+   * Constructs a Game object given the already initialized
+   * Board and GameConfig objects.
+   */
+  public Game(Board board, GameConfig config){
+    gameBoard = board;
+    gameConfig = config;
+  }
 
-		}
-		if (GameConfig.ifWon()){
-			System.out.println("-----------------------------------");
-			System.out.println("THE GAME HAS BEEN WON!!!!!!!!!!!!!!");
-			System.out.println("-----------------------------------");
-		}
-	}
+  /**
+   * Getter and Setter methods.
+   */
+  public Board getGameBoard(){
+    return gameBoard;
+  }
 
-	public static void main(String[] args){
+  public GameConfig getGameConfig(){
+    return gameConfig;
+  }
 
-		setup();
-		play();
-	}
-	
-	
-	
+  public void setGameBoard(Board board){
+    gameBoard = board;
+  }
+
+  public void setGameConfig(GameConfig config){
+    gameConfig = config;
+  }
+
+  /**
+   * Main that creates the specific Class objects and ensures that each Class
+   * has appropriate references to each other.
+   * Specifically,
+   * Game has reference to GameConfig and Board
+   * GameConfig has reference to Game (which has reference to Board.
+   * Also, Main invokes the play() method.
+   */
+  public static void main(String [] args){
+    do{
+      System.out.println("hello");
+      Board theBoard = new Board();
+      GameConfig theGameConfig = new GameConfig();
+      Game game = new Game(theBoard, theGameConfig);
+      theGameConfig.setGame(game);
+      game.play();
+    } while (Game.playAgain());
+  }
+
+  /**
+    * Gathers all the appropriate methods to play a game from the referenced
+    * GameConfig object.
+    * createPlayers() creates the players according to the user.
+    * boardSetup() distributes the countries amongst the players the user has created.
+    * play() contains all the methods to play the game.
+    */
+  public void play(){
+    getGameConfig().createPlayers();
+    getGameConfig().boardSetup();
+    getGameConfig().play();
+  }
+
+  public static boolean playAgain() {
+    System.out.println("Would you like to play again? Type 'yes' or 'no': ");
+    boolean response = true;
+    boolean invalid = true;
+    Scanner input = new Scanner(System.in);
+    String answer = input.nextLine();
+    while (invalid){
+      if (answer.equalsIgnoreCase("yes")){
+        response = true;
+        invalid = false;
+      }
+      if (answer.equalsIgnoreCase("no")){
+        response = false;
+        invalid = false;
+      }
+    }
+    return response;
+  }
+
 }

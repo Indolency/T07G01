@@ -10,15 +10,18 @@ import java.util.Random;
  */
 
 public class Dice{
-	
-	/** 
+
+	public Dice() {
+	}
+
+	/**
 	 * @return num of type int returns a random number between 1 and 6
 	 */
-	
-	public static int diceRoll(){
+
+	public int rollDice(){
 		Random rand = new Random();
 		int num = rand.nextInt(6) + 1;
 		return num;
 	}
-	
+
 }

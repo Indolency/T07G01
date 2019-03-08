@@ -1,104 +1,122 @@
-public class Country{
-	
-	
+import java.util.ArrayList;
+
 /**
- * This Country class is part of the Risk game that stores information about the status of each country
- * before and during the game.
- * @author Israa Farouk
- * @version 2.0
- * @since 2019-02-19
+  * This Country class is part of the Risk game that stores information about the status of each country
+  * before and during the game.
+ * @version 3.0
+ * @author
+ * @since 2019-03-02
  */
- 
-	/** The variables for number of troops and possession are each assigned to each country
-	 * instead of assigning a country to a player
-	 */
-	private String countryName;
-	private int numOfTroops = 0; //number of troops in each country
-	private int possession = -1; //initial possession value of -1 indicates no ownership
-		
-		
-	/** 
-	 * constructor that takes in one argument 
-	 * @param countryName the name of the country 
-	 */
-	public Country(String countryName){
-		this.countryName = countryName;
-	}
-	
-	public Country(Country c){
-		countryName = c.getCountryName();
-		numOfTroops = c.getNumOfTroops();
-		possession = c.getPossession();
-	}
-	
-	public Country(){
-		countryName = "";
-	}
-	
-	// getter methods 
-	
-	/** getter method for the country name
-	 * @return countryName returns the name of the country
-	 */
-	
-	public String getCountryName(){
-		return countryName;
-	}
-	
-	
-	/** getter method for number of troops per country
-	 * @return numOfTroops returns the number of troops in that country
-	 */
-	
-	public int getNumOfTroops(){
-		return numOfTroops;
-	}
-	
-	
-	/** getter method for the ownership of the country
-	 * @return posession which is a number that indicates the player's ownership
-	 */
-	
-	public int getPossession(){
-		return possession;
-	}
-	
-	
-	// setter methods
-	
-	
-	/** setter method for the country name
-	 * @param cname the new country name if a change is required 
-	 */
-	
-	public void setCountryName(String cname){
-		countryName = cname;
-	}
-		
-	
-	/** setter method for number of troops in the country
-	 * @param tnum the new number of troops the country will contain  
-	 */
-		
-	public void setNumOfTroops(int num){
-		numOfTroops = num;
-	}
-			
-	/** setter method for the ownership of the country
-	 * @param poss the new value that indicates the new ownership of the country  
-	 */
-	
-	public void setPossession(int poss){
-		possession = poss;
-	}
-	
-	
-	/**
-	 * @param troops is the number of troops the player is adding to one of their countries
-	 * during the draft part of their turn
-	 */
-	
-	public void addNumOfTroops(int troops){
-		numOfTroops += troops;
-	}
+
+public class Country{
+
+  private String countryName;
+  private int numOfTroops;
+  /**
+   * References to the specific Player object this country belongs to.
+   */
+  private Player playerPossession;
+  /**
+   * ArrayList that contains objects of type Country and references the countries
+   * that are adjacent.
+   */
+  private ArrayList<Country> adjacentCountries;
+  /**
+   * Represents the continent number of this specific countryName.
+   */
+  private int continent;
+
+  /**
+   * Constructs a Country specified by a name. This is instantiated in the
+   * creation of a Board where the String is specified by the developers.
+   * @param name is a String the represents the name of a Country.
+   */
+  public Country(String name){
+    setCountryName(name);
+  }
+
+  public Country() {
+  }
+
+  /**
+   * Getter and Setter methods
+   */
+  public String getCountryName(){
+    return countryName;
+  }
+
+  public int getNumOfTroops(){
+    return numOfTroops;
+  }
+
+  public Player getPlayerPossession(){
+    return playerPossession;
+  }
+
+  public ArrayList<Country> getAdjacentCountries(){
+    return adjacentCountries;
+  }
+
+  public int getContinent(){
+    return continent;
+  }
+
+  public void setCountryName(String name){
+    countryName = name;
+  }
+
+  public void setNumOfTroops(int num){
+    numOfTroops = num;
+  }
+
+  public void setPlayerPossession(Player player){
+    playerPossession = player;
+  }
+
+  public void setAdjacentCountries(ArrayList<Country> list){
+    adjacentCountries = list;
+  }
+
+  public void setContinent(int n){
+    continent = n;
+  }
+
+  /**
+   * Determines if the country no longer has any troops inside of it.
+   * @return boolean that is true is it is empty of troops
+   *  and false if it is not empty of troops.
+   */
+  public boolean isEmpty(){
+    if (numOfTroops == 0)
+      return true;
+    else
+      return false;
+  }
+
+  /**
+   * Adds the specified amount of troops to the country's numOfTroops.
+   * @param n is an integer that represents the number of troops being added.
+   */
+  public void addTroops(int n){
+    numOfTroops += n;
+  }
+
+  /**
+   * Removes the specified amount of troops to the country's numOfTroops.
+   * @param n is an integer that represents the number of troops being removed.
+   */
+  public void removeTroops(int n){
+    numOfTroops -= n;
+  }
+
+  public boolean oneLeft(){
+    boolean response = true;
+    if (getNumOfTroops() == 1){
+      response = true;
+    }
+    else{
+      response = false;
+    }
+    return response;
+  }
 }
