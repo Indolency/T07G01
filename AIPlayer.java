@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
+/**This AIPlayer class is a subclass of Player that can play against the user.
+ * All of the decisions made by AI are made by probability and the outcomes are 
+ * printed out to the user. 
  *
- * @version
- * @author
- * @since
+ * @version 4.0
+ * @author Nicole Langevin
+ * @since 2019-03-11
  */
 
 public class AIPlayer extends Player{
@@ -17,47 +19,56 @@ public class AIPlayer extends Player{
   /**
 	 * @return countriesToChooseFrom returns an arraylist of type country.
 	 * The arraylist contains countries owned by the AI.
-	 * Countries are added to this list based on the number of adjacent countries
-	 * the AI does not own surrounding each country.
+	 * Countries are added to the list depending on what phase in AIPlayer is
+	 * calling to the method.
 	 */
 
 	protected ArrayList<Country> getCountriesToChooseFrom(String phase){
 		ArrayList<Country> countriesToChooseFrom = new ArrayList<Country>();
 
-    if (phase.equalsIgnoreCase("attack") || phase.equalsIgnoreCase("draft")){
+	/*For the attack and draft phases, countries are added to this list based on 
+	the number of adjacent countries the AI does not own surrounding each country.*/
+   	if (phase.equalsIgnoreCase("attack") || phase.equalsIgnoreCase("draft")){
   		//Checks each country AI owns
   		for (int i=0; i<countriesOwned.size(); i++){
   			Country AIOwnedCountry = countriesOwned.get(i);
   			ArrayList<Country> adjacentCountries = AIOwnedCountry.getAdjacentCountries();
-  			//For every adjacent country to AI owned countries,
-  			//if the adjacent country is not owned by AI, the AI country is added to the list of countriesToChooseFrom
+  			/*For every adjacent country to AI owned countries,
+  			if the adjacent country is not owned by AI, the AI country is added to the list of countriesToChooseFrom*/
   			for (Country checkCountry: AIOwnedCountry.getAdjacentCountries()){
   				if (checkCountry.getPlayerPossession() != AIOwnedCountry.getPlayerPossession())
   					countriesToChooseFrom.add(AIOwnedCountry);
   			}
   		}
-    }
-    if (phase.equalsIgnoreCase("fortify")){
-      for (int i=0; i<countriesOwned.size(); i++){
-        //Checks each country AI owns
-        Country AIOwnedCountry = countriesOwned.get(i);
-  			ArrayList<Country> adjacentCountries = AIOwnedCountry.getAdjacentCountries();
-  			//For every adjacent country to AI owned countries,
-  			//if the adjacent country is owned by AI, the AI country is added to the list of countriesToFortifyFrom
-  			for (int j=0; j<adjacentCountries.size(); j++){
-          Country checkCountry = adjacentCountries.get(j);
-          if (checkCountry.getPlayerPossession() == AIOwnedCountry.getPlayerPossession())
-            countriesToChooseFrom.add(AIOwnedCountry);
-          }
-      }
-    }
+	}
+		
+	/*For the fortify phase, countries are added to the list when they are adjacent 
+	to each other and AI owns both countries.*/
+	    if (phase.equalsIgnoreCase("fortify")){
+	      for (int i=0; i<countriesOwned.size(); i++){
+		//Checks each country AI owns
+		Country AIOwnedCountry = countriesOwned.get(i);
+				ArrayList<Country> adjacentCountries = AIOwnedCountry.getAdjacentCountries();
+				//For every adjacent country to AI owned countries,
+				//if the adjacent country is owned by AI, the AI country is added to the list of countriesToFortifyFrom
+				for (int j=0; j<adjacentCountries.size(); j++){
+		  Country checkCountry = adjacentCountries.get(j);
+		  if (checkCountry.getPlayerPossession() == AIOwnedCountry.getPlayerPossession())
+		    countriesToChooseFrom.add(AIOwnedCountry);
+		  }
+	      }
+	    }
   	return countriesToChooseFrom;
 	}
 
 
-  protected boolean getAttackConfirmation(){
+	/**
+	 * @return response of type boolean returns if the AI wants to attack or not.
+	 * This decision is based off how many countries and troops AI has.
+	 */
+  	protected boolean getAttackConfirmation(){
 		ArrayList<Boolean> listOfResponses = new ArrayList<Boolean>();
-    ArrayList<Country> choices = getCountriesToChooseFrom("ATTACK");
+    		ArrayList<Country> choices = getCountriesToChooseFrom("ATTACK");
 		boolean response = false;
 
 		//This for loop checks each country the AI owns and adds true to listOfResponses for each country owned
@@ -68,7 +79,7 @@ public class AIPlayer extends Player{
 			}
 			listOfResponses.add(false);
 		}
-    //AI chooses true or false from listOfResponses
+    		//AI chooses true or false from listOfResponses
 		Random rand = new Random();
 		int num = rand.nextInt(listOfResponses.size());
 		response = listOfResponses.get(num);
@@ -102,6 +113,9 @@ public class AIPlayer extends Player{
 
 	}
 
+/** This method overrides the draft method in the parent Player class. 
+ * @param str of type String takes in 
+ */
   @Override
   protected void draft(String str){
     getBoard().showBoard();
