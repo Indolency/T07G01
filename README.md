@@ -13,7 +13,7 @@ java GameHandler
 ```
 
 ## How to Play
-To begin, the user will pick a number of players for the game, next they will give a name to each player and set each player to human or AI. The game begins by taking turns with the computer to place armies into given zones that have been randomly assigned. Now, the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many buildings as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
+To begin, the user will pick a number of players for the game (for this version, the game will only run fully if you play with two players). Next they will give a name to each player and set each player to human or AI. The game begins by taking turns with the computer to place armies into given zones that have been randomly assigned. Now, the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many buildings as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
 
 ## Authors
 - Israa Farouk
