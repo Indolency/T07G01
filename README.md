@@ -9,7 +9,7 @@ javac *.java
 ````
 Then to play the game, run the command:
 ```
-java Game
+java GameHandler
 ```
 
 ## How to Play
