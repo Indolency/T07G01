@@ -1,17 +1,15 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-/**This AI class is a program the user will play against.
- * All of the decisions made by AI in the Risk game
- * are made by probability and printed out to the user.
- * @version 4.0
- * @author Nicole Langevin
- * @since 03-09-2019
+/**
+ *
+ * @version
+ * @author
+ * @since
  */
 
 public class AIPlayer extends Player{
 
-  /*Constructor*/
   public AIPlayer(String name, Board board){
     super(name, board);
   }
@@ -57,33 +55,29 @@ public class AIPlayer extends Player{
 	}
 
 
-  /**
-   * @return response type boolean returns if AI wants to attack or not.
-   * This decision is made based off how many countries and troops AI owns.
-   */
   protected boolean getAttackConfirmation(){
 		ArrayList<Boolean> listOfResponses = new ArrayList<Boolean>();
     ArrayList<Country> choices = getCountriesToChooseFrom("ATTACK");
 		boolean response = false;
 
-		/*This for loop checks each country the AI owns and adds true to listOfResponses for each country owned
-		 * It then adds the countries AI doesn't own as false so the probability AI chooses to attack is ((countries owned)/(total countries))*/
+		//This for loop checks each country the AI owns and adds true to listOfResponses for each country owned
+		//It then adds the countries AI doesn't own as false so the probability AI chooses to attack is ((countries owned)/(total countries))
 		for (int i=0; i<41; i++){
 			for (int j=0; j<countriesOwned.size(); j++){
 				listOfResponses.add(true);
 			}
 			listOfResponses.add(false);
 		}
-    /*AI chooses true or false from listOfResponses*/
+    //AI chooses true or false from listOfResponses
 		Random rand = new Random();
 		int num = rand.nextInt(listOfResponses.size());
 		response = listOfResponses.get(num);
 
-		/*Final check that there are countries on the map AI hasn't conquered and can attack*/
+		//Final check that there are countries on the map AI hasn't conquered and can attack
 		if (choices.size()<1)
 			response = false;
 
-		/*Final check that all countries AI can choose from have more than 1 troop*/
+		//Final check that all countries AI can choose from have more than 1 troops
 		int counter = 0;
 		ArrayList<Country> checkNumOfTroops = new ArrayList<Country>();
 		for (int i=0; i<choices.size(); i++){
@@ -108,10 +102,8 @@ public class AIPlayer extends Player{
 
 	}
 
-
-  
   @Override
-  protected void draft(){
+  protected void draft(String str){
     getBoard().showBoard();
     System.out.println("\n--------------- "+getPlayerName().toUpperCase()+"'S TURN ---------------");
     System.out.println("-----DRAFT-----");
