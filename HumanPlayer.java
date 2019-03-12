@@ -28,21 +28,10 @@ public class HumanPlayer extends Player{
    * and update the Main's board.
    */
   @Override
-  protected void draft(){
-    getBoard().showBoard();
-    System.out.println("\n--------------- "+getPlayerName().toUpperCase()+"'S TURN ---------------");
-    System.out.println("-----DRAFT-----");
-    Scanner input = new Scanner(System.in);
-    int n = draftNum();
-    System.out.println("You can draft "+n+" troops.");
-    while(n>0){
-      System.out.print("--Which country would you like to draft to? ");
-      String countryName = input.nextLine();
-      for(Country country: countriesOwned){
-        if(countryName.equalsIgnoreCase(country.getCountryName())){
-          country.addTroops(1);
-          n--;
-        }
+  protected void draft(String string){
+    for (Country country: getCountriesOwned()){
+      if (string.equalsIgnoreCase(country.getCountryName())){
+        country.addTroops(1);
       }
     }
   }
