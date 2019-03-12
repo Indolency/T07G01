@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-/**This AIPlayer class is a subclass of Player that can play against the user.
+/**
+ * This AIPlayer class is a subclass that extends Player and can play against the user.
  * All of the decisions made by AI are made by probability and the outcomes are 
  * printed out to the user. 
  *
@@ -12,11 +13,16 @@ import java.util.Random;
 
 public class AIPlayer extends Player{
 
+	
+  /**
+  * Constructs an object of class AIPlayer given the specified name with reference
+  * to the Main's board.
+  */	
   public AIPlayer(String name, Board board){
     super(name, board);
   }
 
-  /**
+  	/**
 	 * @return countriesToChooseFrom returns an arraylist of type country.
 	 * The arraylist contains countries owned by the AI.
 	 * Countries are added to the list depending on what phase in AIPlayer is
@@ -113,8 +119,11 @@ public class AIPlayer extends Player{
 
 	}
 
-/** This method overrides the draft method in the parent Player class. 
- * @param str of type String takes in 
+/** 
+ * This method overrides the draft method in the parent Player class. 
+ * @param str of type String takes in the country the AI would like to draft to.
+ * The AI chooses where to draft by randomly picking a country from the ArrayList 
+ * countriesToChooseFrom of type Country.
  */
   @Override
   protected void draft(String str){
@@ -137,6 +146,11 @@ public class AIPlayer extends Player{
     }
   }
 
+/** 
+ * This method overrides the attack method in the parent Player class. 
+ * The AI chooses where to attack by randomly picking a country from a new ArrayList 
+ * created with use of the method getCountriesToChooseFrom().
+ */
   @Override
   protected void attack(){
     System.out.println("-----ATTACK-----");
@@ -208,16 +222,17 @@ public class AIPlayer extends Player{
         int userDice = dice.rollDice();
         int opponentDice = dice.rollDice();
         System.out.println("--" + "\nAI rolled a " +userDice+ "\nYou rolled a " +opponentDice+ "\n--");
-        /*if (userCountry==null || opponentCountry==null){
-          proceed = false;
-          break;
-        }
-        else*/ if (userDice > opponentDice && opponentCountry.oneLeft()){
+        
+	/*If the opponent's country only has one troop and the current player wins the dice roll,
+            the country being attacked changes its possession to that of the current player,
+            and the troops of the current player minus one are all moved into the attacked country.*/
+	if (userDice > opponentDice && opponentCountry.oneLeft()){
           addCountry(opponentCountry);
           opponent.removeCountry(opponentCountry);
           opponentCountry.setPlayerPossession(this);
           System.out.println("AI has conquered " + opponentCountry.getCountryName() + "!");
 
+	//After each roll, the game checks to see if the game has been won
           boolean check = getBoard().checkWinner();
           if (check == true){
               setWinner(true);
@@ -226,26 +241,15 @@ public class AIPlayer extends Player{
           break;
         }
 
-        else if (userDice <= opponentDice && userCountry.oneLeft()) {
-            opponent.addCountry(userCountry);
-            removeCountry(userCountry);
-            userCountry.setPlayerPossession(opponent);
-            System.out.println("--The human player has conquered " + userCountry.getCountryName() + "!--");
-
-            boolean check = getBoard().checkWinner();
-            if (check == true){
-                setWinner(true);
-                attacking = false;
-            }
-            break;
-          }
-
+	/*If the opponent's country has more than one troop, and the current player wins the dice roll, 
+        one troop is removed from the attacked country of the opponent.*/
         else if (userDice > opponentDice){
           opponentCountry.removeTroops(1);
           System.out.println("--AI won! \nIts opponent now has: " + opponentCountry.getNumOfTroops() + " troops.");
           System.out.println("AI has: " + userCountry.getNumOfTroops() + " troops.");
         }
 
+	/*If the current player loses the dice roll, one troop is removed from the attacking country of the current player.*/
         else if (userDice <= opponentDice){
           userCountry.removeTroops(1);
           System.out.println("--You lost! \nYou now have: " + userCountry.getNumOfTroops() + " troops.");
@@ -262,6 +266,13 @@ public class AIPlayer extends Player{
 
   }
 
+/** 
+ * This method overrides the fortify method in the parent Player class. 
+ * The AI chooses where to fortify by randomly picking a country from a new ArrayList 
+ * created with use of the method getCountriesToChooseFrom().
+ * Probability of a country being picked is first added based off less troops being in that country
+ * Probability is also added to a country if it has more adjacent countries not owned by AI
+ */
   @Override
   protected void fortify(){
     System.out.println("-----FORTIFY-----");
@@ -317,8 +328,12 @@ public class AIPlayer extends Player{
         countryFortifyFrom = countriesFortifyFrom.get(numFrom);
       }
 
+	/*Gets the number of troops the AI wants to fortify.
+	This is the only function in AI that is a logically set number, 
+	instead of being logically chosen*/
       int numOfTroopsToFortify = (countryFortifyFrom.getNumOfTroops()-1)/2;
 
+	//Moves the troops from one country to the other based on the fortifying decisions
       if (countryFortifyFrom.getNumOfTroops()>2){
         countryFortifyFrom.removeTroops(numOfTroopsToFortify);
         countryToFortify.addTroops(numOfTroopsToFortify);
