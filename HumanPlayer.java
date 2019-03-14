@@ -28,21 +28,10 @@ public class HumanPlayer extends Player{
    * and update the Main's board.
    */
   @Override
-  protected void draft(){
-    getBoard().showBoard();
-    System.out.println("\n--------------- "+getPlayerName().toUpperCase()+"'S TURN ---------------");
-    System.out.println("-----DRAFT-----");
-    Scanner input = new Scanner(System.in);
-    int n = draftNum();
-    System.out.println("You can draft "+n+" troops.");
-    while(n>0){
-      System.out.print("--Which country would you like to draft to? ");
-      String countryName = input.nextLine();
-      for(Country country: countriesOwned){
-        if(countryName.equalsIgnoreCase(country.getCountryName())){
-          country.addTroops(1);
-          n--;
-        }
+  protected void draft(String string){
+    for (Country country: getCountriesOwned()){
+      if (string.equalsIgnoreCase(country.getCountryName())){
+        country.addTroops(1);
       }
     }
   }
@@ -116,12 +105,16 @@ public class HumanPlayer extends Player{
             int opponentDice = dice.rollDice();
             System.out.println("--" + "\nYou rolled a " + userDice + "\nOpponent rolled a " + opponentDice + "\n--");
 
+            /*If the opponent's country only has one troop and the current player wins the dice roll,
+            the country being attacked changes its possession to that of the current player,
+            and the troops of the current player minus one are all moved into the attacked country.*/
             if (userDice > opponentDice && opponentCountry.oneLeft()){
                 addCountry(opponentCountry);
                 opponent.removeCountry(opponentCountry);
                 opponentCountry.setPlayerPossession(this);
                 System.out.println("--You have conquered " + opponentCountry.getCountryName() + "!");
 
+              //After each roll, the game checks to see if the game has been won
                 boolean check = getBoard().checkWinner();
                 if (check == true){
                     setWinner(true);
@@ -129,11 +122,14 @@ public class HumanPlayer extends Player{
                 }
                 break;
 
+              /*If the opponent's country has more than one troop, and the current player wins the dice roll, 
+              one troop is removed from the attacked country of the opponent.*/
             } else if (userDice > opponentDice){
               opponentCountry.removeTroops(1);
               System.out.println("--You won! \nThe opponent now has: " + opponentCountry.getNumOfTroops() + " troops.");
               System.out.println("You have: " + userCountry.getNumOfTroops() + " troops.");
 
+            /*If the current player loses the dice roll, one troop is removed from the attacking country of the current player.*/
             } else if (userDice <= opponentDice){
               userCountry.removeTroops(1);
               System.out.println("--You lost! \nYou now have: " + userCountry.getNumOfTroops() + " troops.");
@@ -170,7 +166,7 @@ public class HumanPlayer extends Player{
   }
 
 
-
+//Creates an arraylist to check if the countries the user is picking from are owned by the player
   protected ArrayList<Country> validCountries(String phase) {
     ArrayList<Country> validTroops = new ArrayList<Country>();
     ArrayList<Country> valid = new ArrayList<Country>();

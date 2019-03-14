@@ -23,7 +23,12 @@ public class Board{
   public Board(){
     ArrayList<Country> list = new ArrayList<Country>();
     ArrayList<String> listOfNames = new ArrayList<String>();
-    String[] names = {"North America", "South America", "Europe", "Africa", "Asia", "Australia"};
+    String[] names = {"HYBRID", "CCIT", "ENA", "ENB", "ENC", "END", "ENF", "SSE", "TI",
+                      "EEEL", "ICT", "ES", "SA",  "SB", "TR", "MS", "ST", "SS", "BS",
+                      "OO", "KNA", "KNB", "MSC", "MACHALL",
+                      "MB", "MT", "MFH", "TFDL", "CHG", "CHC", "RT", "RC", "ARTSPARK",
+                      "AD", "PF", "EDUC", "SCRF",
+                      "IH", "DC", "TRAD", "APTS"};
     listOfNames.addAll(Arrays.asList(names));
 
     // creates each country as specified in the String[] names
@@ -52,34 +57,214 @@ public class Board{
   public ArrayList<Country> adjacentCountries(String countryName){
     ArrayList<Country> list = new ArrayList<Country>();
     switch(countryName){
-      case "North America" :
-        list.add(countriesList.get(1));
-        list.add(countriesList.get(2));
-        list.add(countriesList.get(4));
+      case "CCIT" :
+        list.add(countriesList.get(5));
+        list.add(countriesList.get(6));
         break;
-      case "South America" :
-        list.add(countriesList.get(0));
-        list.add(countriesList.get(3));
-        break;
-      case "Europe" :
-        list.add(countriesList.get(0));
+      case "ENA" :
         list.add(countriesList.get(3));
         list.add(countriesList.get(4));
+        list.add(countriesList.get(7));
+        list.add(countriesList.get(10));
         break;
-      case "Africa" :
-        list.add(countriesList.get(1));
+      case "ENB" :
         list.add(countriesList.get(2));
         list.add(countriesList.get(4));
+        list.add(countriesList.get(9));
         break;
-      case "Asia" :
-        list.add(countriesList.get(0));
+      case "ENC" :
         list.add(countriesList.get(2));
         list.add(countriesList.get(3));
         list.add(countriesList.get(5));
+        list.add(countriesList.get(6));
+        list.add(countriesList.get(7));
         break;
-      case "Australia" :
+      case "END" :
+        list.add(countriesList.get(1));
         list.add(countriesList.get(4));
+        list.add(countriesList.get(6));
+        list.add(countriesList.get(7));
         break;
+      case "ENF" :
+        list.add(countriesList.get(4));
+        list.add(countriesList.get(5));
+        list.add(countriesList.get(7));
+        break;
+      case "SSE" :
+        list.add(countriesList.get(2));
+        list.add(countriesList.get(4));
+        list.add(countriesList.get(5));
+        list.add(countriesList.get(6));
+        list.add(countriesList.get(8));
+        break;
+      case "TI" :
+        list.add(countriesList.get(6));
+        list.add(countriesList.get(7));
+        list.add(countriesList.get(13));
+        list.add(countriesList.get(22));
+        list.add(countriesList.get(23));
+        break;
+      case "EEEL" :
+        list.add(countriesList.get(3));
+        list.add(countriesList.get(10));
+        list.add(countriesList.get(11));
+        break;
+      case "ICT" :
+        list.add(countriesList.get(2));
+        list.add(countriesList.get(9));
+        list.add(countriesList.get(11));
+        break;
+      case "ES" :
+        list.add(countriesList.get(9));
+        list.add(countriesList.get(10));
+        list.add(countriesList.get(13));
+        list.add(countriesList.get(14));
+        list.add(countriesList.get(15));
+        break;
+      case "SA" :
+        list.add(countriesList.get(13));
+        list.add(countriesList.get(16));
+        list.add(countriesList.get(17));
+        list.add(countriesList.get(33));
+        break;
+      case "SB" :
+        list.add(countriesList.get(8));
+        list.add(countriesList.get(11));
+        list.add(countriesList.get(12));
+        list.add(countriesList.get(23));
+        break;
+      case "TR" :
+        list.add(countriesList.get(11));
+        list.add(countriesList.get(15));
+        break;
+      case "MS" :
+        list.add(countriesList.get(11));
+        list.add(countriesList.get(14));
+        list.add(countriesList.get(16));
+        break;
+      case "ST" :
+        list.add(countriesList.get(12));
+        list.add(countriesList.get(15));
+        list.add(countriesList.get(17));
+        list.add(countriesList.get(18));
+        break;
+      case "SS" :
+        list.add(countriesList.get(12));
+        list.add(countriesList.get(16));
+        list.add(countriesList.get(33));
+        break;
+      case "BS" :
+        list.add(countriesList.get(16));
+        break;
+      case "OO" :
+        list.add(countriesList.get(20));
+        list.add(countriesList.get(21));
+        break;
+      case "KNA" :
+        list.add(countriesList.get(19));
+        list.add(countriesList.get(21));
+        list.add(countriesList.get(37));
+        break;
+      case "KNB" :
+        list.add(countriesList.get(19));
+        list.add(countriesList.get(20));
+        list.add(countriesList.get(22));
+        break;
+      case "MSC" :
+        list.add(countriesList.get(8));
+        list.add(countriesList.get(21));
+        list.add(countriesList.get(23));
+        break;
+      case "MACHALL" :
+        list.add(countriesList.get(8));
+        list.add(countriesList.get(13));
+        list.add(countriesList.get(22));
+        list.add(countriesList.get(24));
+        list.add(countriesList.get(27));
+        break;
+      case "MB" :
+        list.add(countriesList.get(23));
+        list.add(countriesList.get(25));
+        list.add(countriesList.get(27));
+        break;
+      case "MT" :
+        list.add(countriesList.get(24));
+        list.add(countriesList.get(26));
+        list.add(countriesList.get(27));
+        break;
+      case "MFH" :
+        list.add(countriesList.get(25));
+        list.add(countriesList.get(29));
+        list.add(countriesList.get(34));
+        break;
+      case "TFDL" :
+        list.add(countriesList.get(23));
+        list.add(countriesList.get(25));
+        list.add(countriesList.get(28));
+        break;
+      case "CHG" :
+        list.add(countriesList.get(27));
+        list.add(countriesList.get(29));
+        list.add(countriesList.get(30));
+        list.add(countriesList.get(32));
+        break;
+      case "CHC" :
+        list.add(countriesList.get(26));
+        list.add(countriesList.get(28));
+        list.add(countriesList.get(30));
+        list.add(countriesList.get(32));
+        break;
+      case "RT" :
+        list.add(countriesList.get(28));
+        list.add(countriesList.get(29));
+        list.add(countriesList.get(31));
+        list.add(countriesList.get(32));
+        break;
+      case "RC" :
+        list.add(countriesList.get(30));
+        break;
+      case "ARTSPARK" :
+        list.add(countriesList.get(28));
+        list.add(countriesList.get(29));
+        list.add(countriesList.get(30));
+        break;
+      case "AD" :
+        list.add(countriesList.get(12));
+        list.add(countriesList.get(17));
+        list.add(countriesList.get(34));
+        break;
+      case "PF" :
+        list.add(countriesList.get(26));
+        list.add(countriesList.get(33));
+        list.add(countriesList.get(35));
+        break;
+      case "EDUC" :
+        list.add(countriesList.get(33));
+        list.add(countriesList.get(36));
+        break;
+      case "SCRF" :
+        list.add(countriesList.get(35));
+        break;
+      case "IH" :
+        list.add(countriesList.get(20));
+        list.add(countriesList.get(38));
+        break;
+      case "DC" :
+        list.add(countriesList.get(37));
+        list.add(countriesList.get(39));
+        break;
+      case "TRAD" :
+        list.add(countriesList.get(38));
+        list.add(countriesList.get(40));
+        break;
+      case "APTS" :
+          list.add(countriesList.get(39));
+          list.add(countriesList.get(0));
+          break;
+        case "HYBRID" :
+          list.add(countriesList.get(40));
+          break;
+
     }
     return list;
   }
@@ -94,23 +279,23 @@ public class Board{
   public int determineContinent(String countryName){
     int n = 0;
     switch(countryName){
-      case "North America":
+      case "Engineering":
         n = 0;
         break;
-      case "South America":
-        n = 0;
-        break;
-      case "Europe":
+      case "Kinesiology":
         n = 1;
         break;
-      case "Africa":
-        n = 1;
-        break;
-      case "Asia":
+      case "Sciences":
         n = 2;
         break;
-      case "Australia":
-        n = 2;
+      case "Arts":
+        n = 3;
+        break;
+      case "Professional Faculties":
+        n = 4;
+        break;
+      case "Residence":
+        n = 5;
         break;
     }
     return n;

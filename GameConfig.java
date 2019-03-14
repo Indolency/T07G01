@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
+import javafx.application.Application;
 
 /**
  * This GameConfig class is part of the Risk game that is responsible
@@ -8,7 +9,7 @@ import java.util.Random;
  * mechanism of the Game.
  * @version 2.0
  * @author T07G01
- * @since 2019-03-02
+ * @since 2019-03-12
  */
 
 public class GameConfig{
@@ -22,6 +23,7 @@ public class GameConfig{
    * Contains all the Players that the user has specifically made.
    */
   private ArrayList<Player> listOfPlayers;
+  private Player currentPlayer;
 
   /**
    * Constructs a GameConfig object without any specific instance variables.
@@ -50,6 +52,14 @@ public class GameConfig{
     listOfPlayers = list;
   }
 
+  public Player getCurrentPlayer(){
+    return currentPlayer;
+  }
+
+  public void setCurrentPlayer(Player player){
+    currentPlayer = player;
+  }
+
   /**
    * Asks the user for how many players they would like to play a game with.
    * After the number of players has been determined, the user gets to specify
@@ -57,83 +67,102 @@ public class GameConfig{
    * Depending on the user's input, a HumanPlayer or an AIPlayer object is created
    * and added to the listOfPlayers.
    */
-  public void createPlayers(){
+  public void createPlayers(ArrayList<String> playerNames, ArrayList<String> playerTypes){
     ArrayList<Player> list = new ArrayList<Player>();
-    boolean invalid = true;
-    boolean invalidType = true;
-
-    while (invalid) {
-      Scanner input = new Scanner(System.in);
-      System.out.print("How many players would you like? Type a number between 2 and 8 (inclusive): ");
-      String num = input.nextLine();
-      if (num.equals("2") || num.equals("3") || num.equals("4") || num.equals("5") || num.equals("6")|| num.equals("7") || num.equals("8")){
-        int result = Integer.parseInt(num);
-        for(int i=1; i<=result; i++){
-          System.out.print("Enter the name of Player "+i+": ");
-          String name = input.nextLine();
-
-          invalidType = true;
-          while (invalidType) {
-              System.out.print("What kind of player would want "+name+" to be?\nEnter 0 for Human and 1 for AI: ");
-              String type = input.nextLine();
-              if (type.equals("0")){
-                  int resultType = Integer.parseInt(type);
-                  Player player = new HumanPlayer(name, getGame().getGameBoard());
-                  list.add(player);
-                  invalidType = false;
-              }
-              else if (type.equals("1")){
-                  int resultType = Integer.parseInt(type);
-                  Player player = new AIPlayer(name, getGame().getGameBoard());
-                  list.add(player);
-                  invalidType = false;
-              }
-            }
-          }
-         invalid = false;
+    //System.out.print("How many players would you like? Type a number between 2 and 6 (inclusive): ");
+    int numOfPlayers = playerNames.size();
+    for(int i=0; i<numOfPlayers; i++){
+      String name = playerNames.get(i);
+      if (playerTypes.get(i).equals("HUMAN")){
+        Player player = new HumanPlayer(name, getGame().getGameBoard());
+        list.add(player);
+        }
+      else if (playerTypes.get(i).equals("AI")){
+        Player player = new AIPlayer(name, getGame().getGameBoard());
+        list.add(player);
         }
       }
-      setListOfPlayers(list);
+    setListOfPlayers(list);
+    System.out.println(listOfPlayers.size());
+  }
+
+/*
+  public int determineCountriesPP(int numOfPlayers){
+    int numOfCountriesPP;
+    switch(numOfPlayers){
+      case 2:
+        numOfCountriesPP = 20;
+        break;
+      case 3:
+        numOfCountriesPP = 20;
+        break;
+      case 4:
+        numOfCountriesPP = 20;
+        break;
+      case 5:
+        numOfCountriesPP = 20;
+        break;
+      case 6:
+        numOfCountriesPP = 20;
+        break;
+      }
+      return numOfCountriesPP;
     }
+  }
+  */
 
   /**
    * Sets up the board according to the number of players specified by the User.
    * It divides the countries between the players and randomly distributes a standard
    * number of troops to each player's country possession.
    */
-  public void boardSetup(){
-    Board board = getGame().getGameBoard();
-    Random rand = new Random();
-    int numOfPlayers = listOfPlayers.size();
-    int numOfCountriesPP = getGame().getGameBoard().getCountriesList().size() / numOfPlayers; // will change when more countries are added
-    int numOfTroopsPP = 9; // will change when more countries are added
+   public void boardSetup(){
+      Board board = getGame().getGameBoard();
+      Random rand = new Random();
+      int numOfPlayers = listOfPlayers.size();
+      // will change when more countries are added
+      int numOfTroopsPP = 40; // will change when more countries are added
 
-    //countries are randomly assigned to each player
-    for (Player player: listOfPlayers){
-      while(player.getCountriesOwned().size() != numOfCountriesPP){
-        int index = rand.nextInt(getGame().getGameBoard().getCountriesList().size());
-        Country country = getGame().getGameBoard().getCountriesList().get(index);
-        if (country.getPlayerPossession() == null){
-          country.setPlayerPossession(player);
-          player.addCountry(country);
+      //countries are randomly assigned to each player
+  	int countriesToDistribute = 41;
+  	while(countriesToDistribute!=0){
+  		for (Player player: listOfPlayers){
+  			if (countriesToDistribute!=0){
+  				int index = rand.nextInt(getGame().getGameBoard().getCountriesList().size());
+  				Country country = getGame().getGameBoard().getCountriesList().get(index);
+  				if(country.getPlayerPossession() == null){
+  					country.setPlayerPossession(player);
+  					player.addCountry(country);
+  				}
+  				else{
+  					while(country.getPlayerPossession()!= null){
+  						index = rand.nextInt(getGame().getGameBoard().getCountriesList().size());
+  						country = getGame().getGameBoard().getCountriesList().get(index);
+  					}
+  					country.setPlayerPossession(player);
+  					player.addCountry(country);
+  				}
+  			countriesToDistribute --;
+  		  }
+  		}
+  	}
+
+      // after determining each player's countries, a standard number of troops are randomly distributed into each
+      for (Player player: listOfPlayers){
+        int n = numOfTroopsPP;
+        for(Country country: player.getCountriesOwned()){
+          country.setNumOfTroops(1);
+          n--;
+        }
+        while(n > 0){
+          int index = rand.nextInt(player.getCountriesOwned().size());
+          player.getCountriesOwned().get(index).addTroops(1);
+          n--;
         }
       }
+      getGame().getGameBoard().showBoard();
     }
 
-    // after determining each player's countries, a standard number of troops are randomly distributed into each
-    for (Player player: listOfPlayers){
-      int n = numOfTroopsPP;
-      for(Country country: player.getCountriesOwned()){
-        country.setNumOfTroops(1);
-        n--;
-      }
-      while(n > 0){
-        int index = rand.nextInt(player.getCountriesOwned().size());
-        player.getCountriesOwned().get(index).addTroops(1);
-        n--;
-      }
-    }
-  }
 
 
   /**
@@ -146,15 +175,16 @@ public class GameConfig{
   public void play(){
     Dice dice = new Dice();
     boolean notWon = true;
-
+/*
     while (notWon) {
         for(Player player: listOfPlayers){
-          player.draft();
+          setCurrentPlayer(player);
+          player.draft(String str);
           player.attack();
           boolean check = player.getWinner();
           if (check == true){
             System.out.println("----------------------------------------------");
-            System.out.println("Congradulations " + player.getPlayerName() + " you have conquered U of C!");
+            System.out.println("Congratulations " + player.getPlayerName() + " you have conquered U of C!");
             System.out.println("----------------------------------------------");
             notWon = false;
             break;
@@ -162,7 +192,7 @@ public class GameConfig{
           player.fortify();
       }
     }
+    */
   }
-
 
 }

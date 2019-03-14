@@ -75,7 +75,7 @@ public abstract class Player{
   /**
    * This method is overridden in the children classes: HumanPlayer and AIPlayer
    */
-  protected void draft(){
+  protected void draft(String str){
   }
 
   /**
@@ -89,6 +89,12 @@ public abstract class Player{
    */
   protected void fortify(){
   }
+
+
+/*
+  protected boolean countriesUpdated(){
+    updated = true;
+  }/
 
   /**
    * Determines the number of troops a player will be able to draft with in the beginning of each turn
