@@ -49,21 +49,22 @@ public class HumanPlayer extends Player{
     boolean invalid = true;
     Dice dice = new Dice();
 
+    // Main attacking loop, will begin by asking is they want to attack
     while (attacking){
         ArrayList<Country> valid = validCountries("Attack");
         Country userCountry = new Country();
         System.out.println("--Would you like to attack? Type 'yes' or 'no'--");
+        // Checks if they user is still allowed to attack, loop if not
         if (valid.size()==0){
           System.out.println("You are unable attack because there are no valid moves available!");
           break;
         }
         Scanner input = new Scanner(System.in);
         String response = input.nextLine();
+        // Begins the attack if user answers yes to the attack phase
         if (response.equalsIgnoreCase("Yes")){
-        // Asks player for which country to attack from.
-        // Checks if the input given is valid
-
         invalid = true;
+        // Checks if the country is a valid country to attack from
         while (invalid){
           System.out.println("--Please enter a valid country to attack from: ");
           Scanner validCountryFrom = new Scanner(System.in);
@@ -83,6 +84,7 @@ public class HumanPlayer extends Player{
         invalid = true;
         valid = validAdjacentCountries(userCountry, "Attack");
         Country opponentCountry = new Country();
+        // Attacking phase, keeps looping while the user still wants to attack
         while (invalid) {
             System.out.println("--Please enter a valid country to attack: ");
             Scanner validCountryTo = new Scanner(System.in);
@@ -100,6 +102,7 @@ public class HumanPlayer extends Player{
           }
           Player opponent = opponentCountry.getPlayerPossession();
           boolean proceed = true;
+          // Dice rolls for attacking troops
           do {
             int userDice = dice.rollDice();
             int opponentDice = dice.rollDice();
@@ -122,7 +125,7 @@ public class HumanPlayer extends Player{
                 }
                 break;
 
-              /*If the opponent's country has more than one troop, and the current player wins the dice roll, 
+              /*If the opponent's country has more than one troop, and the current player wins the dice roll,
               one troop is removed from the attacked country of the opponent.*/
             } else if (userDice > opponentDice){
               opponentCountry.removeTroops(1);
@@ -140,11 +143,13 @@ public class HumanPlayer extends Player{
 
             getBoard().showBoard();
 
+            // Checks if the user can still attack (If they have one troop remaining, cannot attack anymore)
             invalid = true;
             if (userCountry.oneLeft()){
                 System.out.println("--You have 1 troop left! You can no longer attack from this country!--");
                 break;
             }
+            // Asks user if they want to continue attacking
             else{
                 while (invalid){
                   System.out.println("--Would you like to continue? Type 'yes' or 'no': ");
@@ -160,6 +165,7 @@ public class HumanPlayer extends Player{
             }
         } while (proceed);
         }
+        // If the user no longer wants to attack, attacking phase will end
         if (response.equalsIgnoreCase("No"))
             attacking = false;
     }
