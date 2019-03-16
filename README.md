@@ -19,7 +19,7 @@ To begin, the user will pick a number of players for the game (for this version,
 To test certain logic classes, run the commands in command prompt:
 ```
 javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar *.java
-java -cp .;junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
+java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
 ```
 
 ## Authors
