@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This HumanPlayer class is a subclass that extends Player.
@@ -107,6 +108,8 @@ public class HumanPlayer extends Player{
           int numDice = 0;
           int oppNumDice = 0;
           do {
+            /* Checks if there should be a prompt to pci ka number of dice or if
+            the number of dice from the last round should be used */
             if (numDice == 0) {
                 System.out.println("--You have " + userCountry.getNumOfTroops() + " troops.");
                 System.out.println("The opponent has " + opponentCountry.getNumOfTroops() + " troops.");
@@ -118,6 +121,7 @@ public class HumanPlayer extends Player{
             ArrayList<Integer> userDice = dice.rollDice(numDice);
             ArrayList<Integer> opponentDice = new ArrayList<Integer>();
 
+            // Auto chooses the number of dice the opponent will roll
             if (oppNumDice != 0)
                 opponentDice = dice.rollDice(oppNumDice);
             else {
@@ -126,14 +130,25 @@ public class HumanPlayer extends Player{
                 else if (opponentCountry.getNumOfTroops() <= 2)
                     opponentDice = dice.rollDice(1);
             }
+
+            // Print statements for the dice
             System.out.println("--You rolled: ");
             for (int roll : userDice)
-                System.out.println(roll);
+                try {
+                    Thread.sleep(500);
+                    System.out.println(roll);
+                } catch(InterruptedException ex){
+                    System.exit(0);
+                }
 
             System.out.println("--Opponent rolled: ");
             for (int roll : opponentDice)
-                System.out.println(roll);
-
+                try {
+                    Thread.sleep(500);
+                    System.out.println(roll);
+                } catch(InterruptedException ex){
+                    System.exit(0);
+                }
 
             boolean conquered = false;
 
@@ -156,6 +171,11 @@ public class HumanPlayer extends Player{
                     opponent.removeCountry(opponentCountry);
                     opponentCountry.setPlayerPossession(this);
                     System.out.println("--You have conquered " + opponentCountry.getCountryName() + "!");
+                    try {
+                        Thread.sleep(1000);
+                    } catch(InterruptedException ex){
+                        System.exit(0);
+                    }
 
                   //After each roll, the game checks to see if the game has been won
                     boolean check = getBoard().checkWinner();
@@ -201,11 +221,16 @@ public class HumanPlayer extends Player{
             System.out.println("The opponent has " + opponentDice.size() + " dice left.");
             System.out.println("--You have " + userCountry.getNumOfTroops() + " troops.");
             System.out.println("The opponent has " + opponentCountry.getNumOfTroops() + " troops.");
-    
+
             // Checks if the user can still attack (If they have one troop remaining, cannot attack anymore)
             invalid = true;
             if (userCountry.oneLeft()) {
                 System.out.println("--You have 1 troop left! You can no longer attack from this country!--");
+                try {
+                    Thread.sleep(1000);
+                } catch(InterruptedException ex){
+                    System.exit(0);
+                }
                 break;
             // Asks user if they want to continue attacking
             } else{

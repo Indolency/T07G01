@@ -19,8 +19,8 @@ public class Game {
    * Board and GameConfig objects.
    */
   public Game(Board board, GameConfig config){
-    gameBoard = board;
-    gameConfig = config;
+    setGameBoard(board);
+    setGameConfig(config);
   }
 
   /**

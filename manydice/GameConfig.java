@@ -62,12 +62,15 @@ public class GameConfig{
     boolean invalid = true;
     boolean invalidType = true;
 
+    // Keeps looping until user inputs a valid response
     while (invalid) {
       Scanner input = new Scanner(System.in);
       System.out.print("How many players would you like? Type a number between 2 and 8 (inclusive): ");
       String num = input.nextLine();
+      // Checks to see if the user input is between (2-8)
       if (num.equals("2") || num.equals("3") || num.equals("4") || num.equals("5") || num.equals("6")|| num.equals("7") || num.equals("8")){
         int result = Integer.parseInt(num);
+        // Loops through each player so that they can choose a name and player type
         for(int i=1; i<=result; i++){
           System.out.print("Enter the name of Player "+i+": ");
           String name = input.nextLine();
@@ -103,7 +106,7 @@ public class GameConfig{
    */
   public void boardSetup(){
     Board board = getGame().getGameBoard();
-    Random rand = new Random();	
+    Random rand = new Random();
     int numOfPlayers = listOfPlayers.size();
     // will change when more countries are added
     int numOfTroopsPP = 40; // will change when more countries are added
