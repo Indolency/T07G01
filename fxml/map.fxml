@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MapController">
+   <content>
+      <AnchorPane>
+         <children>
+            <BorderPane fx:id="gameWindow" layoutX="9.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0">
+               <center>
+                  <StackPane fx:id="stackpane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <StackPane fx:id="stackBackground" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="background" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/images/BACKGROUND.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackAD" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ADImage" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/images/AD.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="AD" onMouseClicked="#countryClicked" pickOnBounds="false" text="AD" translateX="270.0" translateY="40.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="275.0" translateY="65.0" />
+                              <Label fx:id="ADTroops" pickOnBounds="false" text="88" translateX="275.0" translateY="65.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackAPTS" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="APTSImage">
+                                 <image>
+                                    <Image url="@/images/APTS.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="APTS" onMouseClicked="#countryClicked" pickOnBounds="false" text="APTS" translateX="-230.0" translateY="175.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-210.0" translateY="210.0" />
+                              <Label fx:id="APTSTroops" pickOnBounds="false" text="88" translateX="-210.0" translateY="210.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackARTSPARK" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ARTSPARKImage">
+                                 <image>
+                                    <Image url="@/images/ARTSPARK.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ARTSPARK" onMouseClicked="#countryClicked" pickOnBounds="false" text="ARTS PARK" translateX="69.0" translateY="245.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="70.0" translateY="270.0" />
+                              <Label fx:id="ARTSPARKTroops" pickOnBounds="false" text="88" translateX="70.0" translateY="270.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackBS" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="BSImage">
+                                 <image>
+                                    <Image url="@/images/BS.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="BS" onMouseClicked="#countryClicked" pickOnBounds="false" text="BS" translateX="350.0" translateY="-150.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="325.0" translateY="-125.0" />
+                              <Label fx:id="BSTroops" pickOnBounds="false" text="88" translateX="325.0" translateY="-125.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackCCIT" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="CCITImage">
+                                 <image>
+                                    <Image url="@/images/CCIT.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="CCIT" onMouseClicked="#countryClicked" pickOnBounds="false" text="CCIT" translateX="-300.0" translateY="-212.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-325.0" translateY="-175.0" />
+                              <Label fx:id="CCITTroops" pickOnBounds="false" text="88" translateX="-325.0" translateY="-175.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackCHC" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="CHCImage">
+                                 <image>
+                                    <Image url="@/images/CHC.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="CHC" onMouseClicked="#countryClicked" pickOnBounds="false" text="CHC" translateX="152.0" translateY="193.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="122.0" translateY="205.0" />
+                              <Label fx:id="CHCTroops" pickOnBounds="false" text="88" translateX="122.0" translateY="205.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackCHG" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="CHGImage">
+                                 <image>
+                                    <Image url="@/images/CHG.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="CHG" onMouseClicked="#countryClicked" pickOnBounds="false" text="CHG" translateX="105.0" translateY="136.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="112.0" translateY="160.0" />
+                              <Label fx:id="CHGTroops" pickOnBounds="false" text="88" translateX="112.0" translateY="160.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackDC" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="DCImage">
+                                 <image>
+                                    <Image url="@/images/DC.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="DC" onMouseClicked="#countryClicked" pickOnBounds="false" text="DC" translateX="-60.0" translateY="170.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-70.0" translateY="195.0" />
+                              <Label fx:id="DCTroops" pickOnBounds="false" text="88" translateX="-70.0" translateY="195.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackEDUC" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="EDUCImage">
+                                 <image>
+                                    <Image url="@/images/EDUC.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="EDUC" onMouseClicked="#countryClicked" pickOnBounds="false" text="EDUC" translateX="280.0" translateY="155.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="270.0" translateY="180.0" />
+                              <Label fx:id="EDUCTroops" pickOnBounds="false" text="88" translateX="270.0" translateY="180.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackEEEL" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="EEELImage">
+                                 <image>
+                                    <Image url="@/images/EEEL.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="EEEL" onMouseClicked="#countryClicked" pickOnBounds="false" text="EEEL" translateX="75.0" translateY="-265.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="108.0" translateY="-248.0" />
+                              <Label fx:id="EEELTroops" pickOnBounds="false" text="88" translateX="108.0" translateY="-248.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackENA" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ENAImage">
+                                 <image>
+                                    <Image url="@/images/ENA.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ENA" onMouseClicked="#countryClicked" pickOnBounds="false" text="ENA" translateX="-155.0" translateY="-180.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="29.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-148.0" translateY="-158.0" />
+                              <Label fx:id="ENATroops" pickOnBounds="false" text="88" translateX="-148.0" translateY="-158.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackENB" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ENBImage">
+                                 <image>
+                                    <Image url="@/images/ENB.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ENB" onMouseClicked="#countryClicked" pickOnBounds="false" text="ENB" translateX="-160.0" translateY="-259.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-154.0" translateY="-235.0" />
+                              <Label fx:id="ENBTroops" pickOnBounds="false" text="88" translateX="-154.0" translateY="-235.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackENC" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ENCImage">
+                                 <image>
+                                    <Image url="@/images/ENC.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ENC" onMouseClicked="#countryClicked" pickOnBounds="false" text="ENC" translateX="-198.0" translateY="-277.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-195.0" translateY="-253.0" />
+                              <Label fx:id="ENCTroops" pickOnBounds="false" text="88" translateX="-195.0" translateY="-253.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackEND" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ENDImage">
+                                 <image>
+                                    <Image url="@/images/END.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="END" onMouseClicked="#countryClicked" pickOnBounds="false" text="END" translateX="-245.0" translateY="-222.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-255.0" translateY="-245.0" />
+                              <Label fx:id="ENDTroops" pickOnBounds="false" text="88" translateX="-255.0" translateY="-245.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackENF" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ENFImage">
+                                 <image>
+                                    <Image url="@/images/ENF.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ENF" onMouseClicked="#countryClicked" pickOnBounds="false" text="ENF" translateX="-255.0" translateY="-97.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-236.0" translateY="-120.0" />
+                              <Label fx:id="ENFTroops" pickOnBounds="false" text="88" translateX="-236.0" translateY="-120.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackES" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ESImage">
+                                 <image>
+                                    <Image url="@/images/ES.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ES" onMouseClicked="#countryClicked" pickOnBounds="false" text="ES" translateX="118.0" translateY="-177.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="130.0" translateY="-150.0" />
+                              <Label fx:id="ESTroops" pickOnBounds="false" text="88" translateX="130.0" translateY="-150.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackHYBRID" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="HYBRIDImage">
+                                 <image>
+                                    <Image url="@/images/HYBRID.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="HYBRID" onMouseClicked="#countryClicked" pickOnBounds="false" text="HYBRID" translateX="-365.0" translateY="240.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-330.0" translateY="275.0" />
+                              <Label fx:id="HYBRIDTroops" pickOnBounds="false" text="88" translateX="-330.0" translateY="275.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackICT" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="ICTImage">
+                                 <image>
+                                    <Image url="@/images/ICT.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ICT" onMouseClicked="#countryClicked" pickOnBounds="false" text="ICT" translateX="-90.0" translateY="-185.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-75.0" translateY="-160.0" />
+                              <Label fx:id="ICTTroops" pickOnBounds="false" text="88" translateX="-75.0" translateY="-160.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackIH" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="IHImage">
+                                 <image>
+                                    <Image url="@/images/IH.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="IH" onMouseClicked="#countryClicked" pickOnBounds="false" text="IH" translateX="5.0" translateY="138.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-15.0" translateY="160.0" />
+                              <Label fx:id="IHTroops" pickOnBounds="false" text="88" translateX="-15.0" translateY="160.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackKNA" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="KNAImage">
+                                 <image>
+                                    <Image url="@/images/KNA.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="KNA" onMouseClicked="#countryClicked" pickOnBounds="false" text="KNA" translateX="-125.0" translateY="50.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-110.0" translateY="76.0" />
+                              <Label fx:id="KNATroops" pickOnBounds="false" text="88" translateX="-110.0" translateY="76.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackKNB" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="KNBImage">
+                                 <image>
+                                    <Image url="@/images/KNB.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="KNB" onMouseClicked="#countryClicked" pickOnBounds="false" text="KNB" translateX="-150.0" translateY="-12.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-175.0" translateY="13.0" />
+                              <Label fx:id="KNBTroops" pickOnBounds="false" text="88" translateX="-175.0" translateY="13.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackMACHALL" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="MACHALLImage">
+                                 <image>
+                                    <Image url="@/images/MACHALL.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="MACHALL" onMouseClicked="#countryClicked" pickOnBounds="false" text="MACHALL" translateX="24.0" translateY="-7.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="10.0" translateY="-30.0" />
+                              <Label fx:id="MACHALLTroops" pickOnBounds="false" text="88" translateX="10.0" translateY="-30.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackMB" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="MBImage">
+                                 <image>
+                                    <Image url="@/images/MB.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="MB" onMouseClicked="#countryClicked" pickOnBounds="false" text="MB" translateX="182.0" translateY="99.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="186.0" translateY="76.0" />
+                              <Label fx:id="MBTroops" pickOnBounds="false" text="88" translateX="186.0" translateY="76.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackMFH" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="MFHImage">
+                                 <image>
+                                    <Image url="@/images/MFH.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="MFH" onMouseClicked="#countryClicked" pickOnBounds="false" text="MFH" translateX="193.0" translateY="169.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="205.0" translateY="193.0" />
+                              <Label fx:id="MFHTroops" pickOnBounds="false" text="88" translateX="205.0" translateY="193.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackMS" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="MSImage">
+                                 <image>
+                                    <Image url="@/images/MS.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="MS" onMouseClicked="#countryClicked" pickOnBounds="false" text="MS" translateX="186.0" translateY="-143.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="212.0" translateY="-147.0" />
+                              <Label fx:id="MSTroops" pickOnBounds="false" text="88" translateX="212.0" translateY="-147.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackMSC" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="MSCImage">
+                                 <image>
+                                    <Image url="@/images/MSC.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="MSC" onMouseClicked="#countryClicked" pickOnBounds="false" text="MSC" translateX="-60.0" translateY="-5.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-52.0" translateY="20.0" />
+                              <Label fx:id="MSCTroops" pickOnBounds="false" text="88" translateX="-52.0" translateY="20.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackMT" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="MTImage">
+                                 <image>
+                                    <Image url="@/images/MT.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="MT" onMouseClicked="#countryClicked" pickOnBounds="false" text="MT" translateX="177.0" translateY="127.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="199.0" translateY="140.0" />
+                              <Label fx:id="MTTroops" pickOnBounds="false" text="88" translateX="199.0" translateY="140.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackOO" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="OOImage">
+                                 <image>
+                                    <Image url="@/images/OO.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="OO" onMouseClicked="#countryClicked" pickOnBounds="false" text="OO" translateX="-280.0" translateY="25.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-265.0" translateY="53.0" />
+                              <Label fx:id="OOTroops" pickOnBounds="false" text="88" translateX="-265.0" translateY="53.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackPF" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="PFImage">
+                                 <image>
+                                    <Image url="@/images/PF.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="PF" onMouseClicked="#countryClicked" pickOnBounds="false" text="PF" translateX="285.0" translateY="113.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="260.0" translateY="125.0" />
+                              <Label fx:id="PFTroops" pickOnBounds="false" text="88" translateX="260.0" translateY="125.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackRC" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="RCImage">
+                                 <image>
+                                    <Image url="@/images/RC.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="RC" onMouseClicked="#countryClicked" pickOnBounds="false" text="RC" translateX="55.0" translateY="160.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="45.0" translateY="185.0" />
+                              <Label fx:id="RCTroops" pickOnBounds="false" text="88" translateX="45.0" translateY="185.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackRT" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="RTImage">
+                                 <image>
+                                    <Image url="@/images/RT.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="RT" onMouseClicked="#countryClicked" pickOnBounds="false" text="RT" translateX="83.0" translateY="188.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="76.0" translateY="212.0" />
+                              <Label fx:id="RTTroops" pickOnBounds="false" text="88" translateX="76.0" translateY="212.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackSA" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="SAImage">
+                                 <image>
+                                    <Image url="@/images/SA.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="SA" onMouseClicked="#countryClicked" pickOnBounds="false" text="SA" translateX="200.0" translateY="-70.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="178.0" translateY="-52.0" />
+                              <Label fx:id="SATroops" pickOnBounds="false" text="88" translateX="178.0" translateY="-52.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackSB" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="SBImage">
+                                 <image>
+                                    <Image url="@/images/SB.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="SB" onMouseClicked="#countryClicked" pickOnBounds="false" text="SB" translateX="85.0" translateY="-85.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="108.0" translateY="-77.0" />
+                              <Label fx:id="SBTroops" pickOnBounds="false" text="88" translateX="108.0" translateY="-77.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackSCURF" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="SCURFImage">
+                                 <image>
+                                    <Image url="@/images/SCURF.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="SCURF" onMouseClicked="#countryClicked" pickOnBounds="false" text="SCURF" translateX="365.0" translateY="130.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="350.0" translateY="155.0" />
+                              <Label fx:id="SCURFTroops" pickOnBounds="false" text="88" translateX="350.0" translateY="155.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackSS" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="SSImage">
+                                 <image>
+                                    <Image url="@/images/SS.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="SS" onMouseClicked="#countryClicked" pickOnBounds="false" text="SS" translateX="254.0" translateY="-63.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="274.0" translateY="-46.0" />
+                              <Label fx:id="SSTroops" pickOnBounds="false" text="88" translateX="274.0" translateY="-46.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackSSE" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="SSEImage">
+                                 <image>
+                                    <Image url="@/images/SSE.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="SSE" onMouseClicked="#countryClicked" pickOnBounds="false" text="SSE" translateX="-197.0" translateY="-202.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-216.0" translateY="-181.0" />
+                              <Label fx:id="SSETroops" pickOnBounds="false" text="88" translateX="-216.0" translateY="-181.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackST" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="STImage">
+                                 <image>
+                                    <Image url="@/images/ST.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="ST" onMouseClicked="#countryClicked" pickOnBounds="false" text="ST" translateX="240.0" translateY="-115.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="265.0" translateY="-110.0" />
+                              <Label fx:id="STTroops" pickOnBounds="false" text="88" translateX="265.0" translateY="-110.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackTFDL" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="TFDLImage">
+                                 <image>
+                                    <Image url="@/images/TFDL.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="TFDL" onMouseClicked="#countryClicked" pickOnBounds="false" text="TFDL" translateX="135.0" translateY="106.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="147.0" translateY="130.0" />
+                              <Label fx:id="TFDLTroops" pickOnBounds="false" text="88" translateX="147.0" translateY="130.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackTI" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="TIImage">
+                                 <image>
+                                    <Image url="@/images/TI.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="TI" onMouseClicked="#countryClicked" pickOnBounds="false" text="TI" translateX="-8.0" translateY="-95.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-23.0" translateY="-80.0" />
+                              <Label fx:id="TITroops" pickOnBounds="false" text="88" translateX="-23.0" translateY="-80.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackTR" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="TRImage">
+                                 <image>
+                                    <Image url="@/images/TR.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="TR" onMouseClicked="#countryClicked" pickOnBounds="false" text="TR" translateX="210.0" translateY="-200.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="230.0" translateY="-185.0" />
+                              <Label fx:id="TRTroops" pickOnBounds="false" text="88" translateX="230.0" translateY="-185.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="stackTRAD" pickOnBounds="false" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="TRADImage">
+                                 <image>
+                                    <Image url="@/images/TRAD.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="TRAD" onMouseClicked="#countryClicked" pickOnBounds="false" text="TRAD" translateX="-150.0" translateY="215.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="32.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow color="#ffffffc3" />
+                                 </effect>
+                              </Label>
+                              <Circle fill="#ffffff83" radius="13.0" stroke="BLACK" strokeType="INSIDE" translateX="-133.0" translateY="238.0" />
+                              <Label fx:id="TRADTroops" pickOnBounds="false" text="88" translateX="-133.0" translateY="238.0">
+                                 <font>
+                                    <Font name="Tw Cen MT Condensed" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+               </center>
+               <bottom>
+                  <StackPane BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Region prefHeight="36.0" prefWidth="800.0" />
+                              <Label fx:id="playerName" pickOnBounds="false" text="PLAYER'S TURN">
+                                 <font>
+                                    <Font name="Goudy Old Style" size="30.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Label>
+                              <Label fx:id="phase" pickOnBounds="false" text="DRAFT PHASE">
+                                 <font>
+                                    <Font name="Goudy Old Style" size="28.0" />
+                                 </font>
+                              </Label>
+                              <StackPane>
+                                 <children>
+                                    <VBox fx:id="draftPhaseContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <Label fx:id="draftOutputToUser" pickOnBounds="false" text="Pick the country you would like to draft.">
+                                             <font>
+                                                <Font name="Goudy Old Style" size="23.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="draftConfirmation" pickOnBounds="false">
+                                             <font>
+                                                <Font name="Goudy Old Style" size="23.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="draftNumBox" prefHeight="25.0" prefWidth="62.0">
+                                             <VBox.margin>
+                                                <Insets top="5.0" />
+                                             </VBox.margin>
+                                          </ChoiceBox>
+                                          <Region prefHeight="23.0" prefWidth="800.0" />
+                                          <Button fx:id="draftButton" mnemonicParsing="false" onMouseClicked="#draftButtonClicked" text="DRAFT">
+                                             <font>
+                                                <Font name="Goudy Old Style" size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Region prefHeight="41.0" prefWidth="800.0" />
+                                       </children>
+                                    </VBox>
+                                    <HBox fx:id="attackConfirmationContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" visible="false">
+                                       <children>
+                                          <Button fx:id="attackYesBtn" mnemonicParsing="false" onMouseClicked="#attackYesBtnClicked" prefHeight="61.0" prefWidth="112.0" text="Continue to attack phase" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Impact" size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="attackNoBtn" mnemonicParsing="false" onMouseClicked="#attackNoBtnClicked" prefHeight="61.0" prefWidth="112.0" text="Skip attack phase" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Impact" size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <StackPane fx:id="attackPhaseContainer" visible="false">
+                                       <children>
+                                          <HBox fx:id="firstAttackBox" alignment="TOP_CENTER" prefHeight="150.0" prefWidth="1000.0">
+                                             <children>
+                                                <StackPane prefHeight="150.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="chooseAttackFrom" text="Choose a country to attack from" textAlignment="CENTER" wrapText="true">
+                                                         <font>
+                                                            <Font name="Goudy Old Style" size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fx:id="imageAttackFrom" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                                         <image>
+                                                            <Image url="@/images/OOscale.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </StackPane>
+                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="true">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" text="Continue" textAlignment="CENTER" wrapText="true">
+                                                         <font>
+                                                            <Font name="Impact" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Button fx:id="continueButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#continueButtonAttackClicked">
+                                                         <font>
+                                                            <Font name="Impact" size="15.0" />
+                                                         </font>
+                                                         <graphic>
+                                                            <ImageView fitHeight="60.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@/images/Arrow.png" />
+                                                               </image>
+                                                               <effect>
+                                                                  <ColorAdjust brightness="-0.26" contrast="-0.6" />
+                                                               </effect>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                   </children>
+                                                </VBox>
+                                                <StackPane prefHeight="150.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="chooseAttack" textAlignment="CENTER" wrapText="true">
+                                                         <font>
+                                                            <Font name="Goudy Old Style" size="22.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fx:id="imageAttack" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                                         <image>
+                                                            <Image url="@/images/APTSscale.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </StackPane>
+                                                <Button fx:id="attackButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#attackButtonClicked" prefHeight="33.0" prefWidth="97.0" text="ATTACK">
+                                                   <font>
+                                                      <Font name="Impact" size="16.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets top="70.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <HBox fx:id="secondAttackBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="147.0" prefWidth="223.0">
+                                                   <children>
+                                                      <HBox prefHeight="76.0" prefWidth="371.0">
+                                                         <children>
+                                                            <StackPane prefHeight="150.0" prefWidth="50.0">
+                                                               <children>
+                                                                  <ImageView fx:id="attackRoll1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@/images/Die.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label fx:id="attackRollNum1">
+                                                                     <font>
+                                                                        <Font name="Impact" size="40.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </StackPane>
+                                                            <StackPane maxWidth="-Infinity" prefHeight="150.0" prefWidth="50.0">
+                                                               <children>
+                                                                  <ImageView fx:id="attackRoll2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@/images/Die.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label fx:id="attackRollNum2">
+                                                                     <font>
+                                                                        <Font name="Impact" size="40.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </StackPane>
+                                                            <StackPane maxWidth="-Infinity" prefHeight="150.0" prefWidth="50.0">
+                                                               <children>
+                                                                  <ImageView fx:id="attackRoll3" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@/images/Die.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                                  <Label fx:id="attackRollNum3">
+                                                                     <font>
+                                                                        <Font name="Impact" size="40.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </StackPane>
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox prefHeight="87.0" prefWidth="223.0">
+                                                         <children>
+                                                            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                                                               <children>
+                                                                  <ImageView fx:id="defendRoll1" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                                                                     <image>
+                                                                        <Image url="@/images/Die.png" />
+                                                                     </image>
+                                                                     <effect>
+                                                                        <ColorAdjust saturation="-1.0" />
+                                                                     </effect>
+                                                                  </ImageView>
+                                                                  <Label fx:id="defendRollNum1">
+                                                                     <font>
+                                                                        <Font name="Impact" size="40.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </StackPane>
+                                                            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="50.0">
+                                                               <children>
+                                                                  <ImageView fx:id="defendRoll2" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                                                                     <image>
+                                                                        <Image url="@/images/Die.png" />
+                                                                     </image>
+                                                                     <effect>
+                                                                        <ColorAdjust saturation="-1.0" />
+                                                                     </effect>
+                                                                  </ImageView>
+                                                                  <Label fx:id="defendRollNum2">
+                                                                     <font>
+                                                                        <Font name="Impact" size="40.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </StackPane>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="239.0">
+                                                   <children>
+                                                      <Label fx:id="attackResultFrom" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" wrapText="true">
+                                                         <font>
+                                                            <Font name="Goudy Old Style" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="attackResultTo" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="60.0" wrapText="true">
+                                                         <font>
+                                                            <Font name="Goudy Old Style" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="150.0" prefWidth="227.0">
+                                                   <children>
+                                                      <Label prefHeight="71.0" prefWidth="206.0" text="Would you like to continue to attack?" textAlignment="CENTER" wrapText="true">
+                                                         <font>
+                                                            <Font name="Goudy Old Style" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="227.0">
+                                                         <children>
+                                                            <Button fx:id="attackContinueBtn" mnemonicParsing="false" onMouseClicked="#continueAttackClicked" text="Yes">
+                                                               <font>
+                                                                  <Font name="Impact" size="16.0" />
+                                                               </font>
+                                                            </Button>
+                                                            <Region prefHeight="50.0" prefWidth="74.0" />
+                                                            <Button fx:id="attackNotContinueBtn" mnemonicParsing="false" onMouseClicked="#notContinueAttackClicked" text="No">
+                                                               <font>
+                                                                  <Font name="Impact" size="16.0" />
+                                                               </font>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                    <HBox fx:id="fortifyConfirmationContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" visible="false">
+                                       <children>
+                                          <Button fx:id="fortifyYesBtn" mnemonicParsing="false" onMouseClicked="#fortifyYesBtnClicked" prefHeight="60.0" prefWidth="141.0" text="Continue to fortify phase" textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Impact" size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="fortifyNoBtn" mnemonicParsing="false" onMouseClicked="#fortifyNoBtnClicked" prefHeight="60.0" prefWidth="141.0" text="Skip fortify phase and end turn " textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font name="Impact" size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="fortifyPhaseContainer" alignment="CENTER" prefHeight="168.0" prefWidth="1000.0" visible="false">
+                                       <children>
+                                          <StackPane prefHeight="150.0" prefWidth="193.0">
+                                             <children>
+                                                <Label fx:id="chooseFortifyFrom" prefHeight="52.0" prefWidth="231.0" text="Choose a country to fortify from" textAlignment="CENTER" wrapText="true">
+                                                   <font>
+                                                      <Font name="Goudy Old Style" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="imageFortifyFrom" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                                   <image>
+                                                      <Image url="@/images/OOscale.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="CONTINUE" textAlignment="CENTER" wrapText="true">
+                                                   <font>
+                                                      <Font name="Impact" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button fx:id="continueButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#continueButtonFortifyClicked">
+                                                   <font>
+                                                      <Font name="Impact" size="15.0" />
+                                                   </font>
+                                                   <graphic>
+                                                      <ImageView fitHeight="60.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@/images/Arrow.png" />
+                                                         </image>
+                                                         <effect>
+                                                            <ColorAdjust brightness="-0.26" contrast="-0.6" />
+                                                         </effect>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                          <StackPane prefHeight="150.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="chooseFortify" textAlignment="CENTER" wrapText="true">
+                                                   <font>
+                                                      <Font name="Goudy Old Style" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fx:id="imageFortify" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                                   <image>
+                                                      <Image url="@/images/APTSscale.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <VBox fx:id="fortifyTroopsVBox" alignment="CENTER" prefHeight="192.0" prefWidth="211.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <children>
+                                                <Label prefHeight="82.0" prefWidth="222.0" text="How many troops would you like to fortify?" textAlignment="CENTER" wrapText="true">
+                                                   <font>
+                                                      <Font name="Goudy Old Style" size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <ChoiceBox fx:id="fortifyNumBox" prefHeight="25.0" prefWidth="51.0" />
+                                             </children>
+                                          </VBox>
+                                          <Button fx:id="fortifyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#fortifyButtonClicked" text="FORTIFY">
+                                             <font>
+                                                <Font name="Impact" size="16.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="gameWonContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" visible="false">
+                                       <children>
+                                          <Button fx:id="playAgainButton" mnemonicParsing="false" onMouseClicked="#playAgainYesClicked" text="PLAY AGAIN">
+                                             <font>
+                                                <Font name="Impact" size="18.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="quitGameButton" mnemonicParsing="false" onMouseClicked="#playAgainNoClicked" text="QUIT GAME">
+                                             <font>
+                                                <Font name="Impact" size="18.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </VBox>
+                        <HBox fx:id="endGameScreen" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false" StackPane.alignment="CENTER">
+                           <children>
+                              <Label text="THANKS FOR PLAYING!">
+                                 <font>
+                                    <Font name="Goudy Old Style Bold" size="55.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+               </bottom>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
