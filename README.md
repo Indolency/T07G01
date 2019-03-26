@@ -1,28 +1,35 @@
 # Conquering U of C
-This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take zones from other players.
+This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take buildings from other players.
 
-## Getting Started
-Extract the "Demo2" zip file.\
-Open command prompt and navigate into the "Demo2" folder, run the command to compile the files:
+## Getting Started (GUI)
+Extract the "Demo3" zip file.\
+Open command prompt, navigate into the "Demo3" folder, run the command to compile the files:
+
+
+## Getting Started (Text-Based)
+Extract the "Demo3 Text-Based" zip file.\
+Open command prompt and navigate into "Demo3 Text-Based" folder, run the command to compile the files:
 ```
 javac *.java
 ````
 Then to play the game, run the command:
 ```
-java GameHandler
+java Game
 ```
 
 ## How to Play
-To begin, the user will pick a number of players for the game (for this version, the game will only run fully if you play with two players). Next they will give a name to each player and set each player to human or AI. The game begins by taking turns with the computer to place armies into given zones that have been randomly assigned. Now, the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many buildings as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
+To begin, the user will pick a number of players for the game. Next they will give a name to each player and set each player to human or AI. The game begins by placing troops into given buildings that have been randomly assigned. The turns will rotate through the players going through drafting, attacking, and fortifying phases to conquer as many buildings as they can. The game is user friendly and will give instructions throughout the game to guide the player. When the game is won, the game will end automatically.
 
 ## Running Tests
-To test certain logic classes, make sure that all files are present:
+To test certain logic classes, make sure that all files are present in a location:
 - Java test file
+  - BoardTest, CountryTest, DiceTest, PlayerTest (Located in /Demo3/src/test)
 - Java file to be tested
+  - Board, Country, Dice, Player (Located in /Demo3/src/logic)
 - junit-4.12.jar
 - hamcrest-core-1.3.jar
 
-Run the commands in command prompt:
+Open command prompt, navigate into the folder with all the files, run the commands in command prompt:
 ```
 javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar *.java
 java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
