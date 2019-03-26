@@ -24,13 +24,13 @@ To begin, the user will pick a number of players for the game. Next they will gi
 ## Running Tests
 To test certain logic classes, make sure that all files are present in a location:
 - Java test file
-  - BoardTest, CountryTest, DiceTest, PlayerTest (Located in /Demo3/src/test)
+  - BoardTest, CountryTest, DiceTest, PlayerTest
 - Java file to be tested
-  - Board, Country, Dice, Player (Located in /Demo3/src/logic)
+  - Board, Country, Dice, Player
 - junit-4.12.jar
 - hamcrest-core-1.3.jar
 
-Open command prompt, navigate into the folder with all the files, run the commands in command prompt:
+Open command prompt, navigate into the "junit test package" with all the files, run the commands in command prompt:
 ```
 javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar *.java
 java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
