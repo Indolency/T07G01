@@ -1,5 +1,5 @@
-# Risk Board Game
-This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take zones from other people.
+# Conquering U of C
+This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take zones from other players.
 
 ## Getting Started
 Extract the "Demo2" zip file.\
