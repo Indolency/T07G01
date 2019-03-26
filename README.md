@@ -2,14 +2,14 @@
 This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take buildings from other players.
 
 ## Getting Started (Text-Based)
-Extract the "Demo3" zip file.\
-Open command prompt, navigate into the "Demo3" folder, run the command to compile the files:
+Extract the "Demo3 Text-Based" zip file.\
+Open command prompt, navigate into the "Demo3 Text-Based" folder, run the command to compile the files:
 ```
 javac *.java
 ````
 ## Getting Started (GUI)
-Extract the "Demo3 Text-Based" zip file.\
-Open command prompt and navigate into "Demo3 Text-Based" folder and into the subfolder "src", run the command to compile the files:
+Extract the "Demo3" zip file.\
+Open command prompt and navigate into "Demo3" folder and into the subfolder "src", run the command to compile the files:
 ```
 javac logic/*.java controllers/*.java
 ````
