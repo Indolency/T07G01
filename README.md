@@ -4,17 +4,18 @@ This is based off Risk which is a strategy based board game. The goal of the gam
 ## Getting Started (GUI)
 Extract the "Demo3" zip file.\
 Open command prompt, navigate into the "Demo3" folder, run the command to compile the files:
-
-
-## Getting Started (Text-Based)
-Extract the "Demo3 Text-Based" zip file.\
-Open command prompt and navigate into "Demo3 Text-Based" folder, run the command to compile the files:
 ```
 javac *.java
 ````
+## Getting Started (Text-Based)
+Extract the "Demo3 Text-Based" zip file.\
+Open command prompt and navigate into "Demo3 Text-Based" folder and into the subfolder "src", run the command to compile the files:
+```
+javac logic/*.java controllers/*.java
+````
 Then to play the game, run the command:
 ```
-java Game
+java logic.Driver
 ```
 
 ## How to Play
