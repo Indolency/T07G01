@@ -1,5 +1,5 @@
-# Risk Board Game
-This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take zones from other people.
+# Conquering U of C
+This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take zones from other players.
 
 ## Getting Started
 Extract the "Demo2" zip file.\
@@ -16,7 +16,18 @@ java GameHandler
 To begin, the user will pick a number of players for the game (for this version, the game will only run fully if you play with two players). Next they will give a name to each player and set each player to human or AI. The game begins by taking turns with the computer to place armies into given zones that have been randomly assigned. Now, the human player and the computer will take turns going through the drafting, attacking, and fortifying phases to conquer as many buildings as they can. By following the prompts, the game will guide you. When the game is won or lost, the game will end automatically.
 
 ## Running Tests
-To test certain logic classes, run the commands in command prompt:
+To test certain logic classes, make sure that all files are present:
+- Java test file
+- Java file to be tested
+- junit-4.12.jar
+- hamcrest-core-1.3.jar
+
+Run the commands in command prompt:
+```
+javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar *.java
+java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
+```
+For windows users run these commands instead:
 ```
 javac -cp .;junit-4.12.jar;hamcrest-core-1.3.jar *.java
 java -cp .;junit-4.12.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
