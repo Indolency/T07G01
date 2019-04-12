@@ -19,7 +19,7 @@ java logic.Driver
 ```
 
 ## How to Play
-To begin, the user will pick a number of players for the game. Next they will give a name to each player and set each player to human or AI. The game begins by placing troops into given buildings that have been randomly assigned. The turns will rotate through the players going through drafting, attacking, and fortifying phases to conquer as many buildings as they can. The game is user friendly and will give instructions throughout the game to guide the player. When the game is won, the game will end automatically.
+To begin, the user will pick a number of players for the game. Next they will give a name to each player and set each player to human or AI. The first player must be a human player. The game begins by placing troops into given buildings that have been randomly assigned. The turns will rotate through the players going through drafting, attacking, and fortifying phases to conquer as many buildings as they can. The game is user friendly and will give instructions throughout the game to guide the player. When the game is won, the game will end automatically.
 
 ## Running Tests
 To test certain logic classes, make sure that all files are present in a location:
