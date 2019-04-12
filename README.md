@@ -2,14 +2,19 @@
 This is based off Risk which is a strategy based board game. The goal of the game is to conquer all of the zones on the University of Calgary's campus by taking turns drafting, attacking, and fortifying to take buildings from other players.
 
 ## Getting Started (Text-Based)
-Extract the "Demo3 Text-Based" zip file.\
-Open command prompt, navigate into the "Demo3 Text-Based" folder, run the command to compile the files:
+Extract the "Conquering UofC Text-Based" zip file.\
+Open command prompt, navigate into the "Conquering UofC Text-Based" folder, run the command to compile the files:
 ```
 javac *.java
 ````
+Then run the command to play the game on the console:
+```
+java Game
+````
+
 ## Getting Started (GUI)
-Extract the "Demo3" zip file.\
-Open command prompt and navigate into "Demo3" folder and into the subfolder "src", run the command to compile the files:
+Extract the "Conquering UofC" zip file.\
+Open command prompt and navigate into "Conquering UofC" folder and into the subfolder "src", run the command to compile the files:
 ```
 javac logic/*.java controllers/*.java
 ````
@@ -30,7 +35,9 @@ To test certain logic classes, make sure that all files are present in a locatio
 - junit-4.12.jar
 - hamcrest-core-1.3.jar
 
-Open command prompt, navigate into the "junit test package" with all the files, run the commands in command prompt:
+Note:These are all present in test folder located in Conquering UofC\test
+
+Open command prompt, navigate into the "test" folder with all the files, run the commands in command prompt:
 ```
 javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar *.java
 java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore <test class>
